@@ -1,0 +1,34 @@
+.contactForm {
+  margin: auto;
+  padding: 3.375rem 1rem;
+  width: 75%;
+}
+.contactForm .input {
+  box-shadow: 1px 1px #02020233 inset !important;
+}
+.contactForm label {
+  font-size: 1.1rem !important;
+}
+.contactContainer {
+  background: var(--color-white) !important;
+  color: var(--main-black) !important;
+  /* height: 100% !important; */
+}
+.displayError {
+  border: 1px var(--main-red) solid !important;
+  transition: ease-out 1.25s;
+}
+
+/* small screens  */
+@media screen and (max-width: 576px) {
+  .contactForm {
+    width: 90%;
+  }
+}
+
+/* over 1300px  */
+@media screen and (min-width: 1300px) {
+  .contactForm {
+    width: 800px;
+  }
+}

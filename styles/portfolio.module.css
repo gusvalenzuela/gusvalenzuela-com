@@ -1,0 +1,24 @@
+.portfolioDimmer {
+  position: relative !important;
+  z-index: 1 !important;
+  padding-top: 25% !important;
+  height: 100% !important;
+}
+main.portfolio {
+  background: var(--color5) !important;
+  color: #ffffff !important;
+  padding: 3.375rem 1rem !important;
+}
+.portfolioContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 825px;
+  margin: auto;
+  justify-content: center;
+}
+
+@media screen and (max-width: 533px) {
+  main.portfolio {
+    padding: .444rem !important;
+  }
+}

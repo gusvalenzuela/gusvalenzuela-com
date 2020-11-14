@@ -1,0 +1,40 @@
+.sidebarToggle {
+  border: none;
+  position: absolute;
+  z-index: 99;
+  margin-right: 0em;
+  right: 0;
+  top: 75px;
+  background: var(--main-red);
+  cursor: pointer;
+  padding: 3.145rem 0.5rem 3.145rem 0.25rem;
+  outline-color: transparent !important;
+  border-top: 1px outset transparent;
+  border-bottom: 1px outset transparent;
+  border-left: 1px outset transparent;
+  transition: "left .3s ease-out, right .3s ease-out";
+}
+.sidebarClosed,
+.sidebarOpened {
+  font-size: xx-large;
+}
+.sidebarClosed::after {
+  content: "◀";
+}
+.sidebarOpened::after {
+  content: "▶";
+}
+.sidebarToggle:hover {
+  background: var(--main-black);
+  color: var(--main-red);
+}
+.sidebarToggle > .fa {
+  font-size: 28px;
+  padding: 4rem 0;
+}
+.sidebarOpened.smallScreen {
+  display: none;
+}
+.sidebarToggle.smallScreen {
+  position: absolute;
+}

@@ -1,0 +1,12 @@
+.cardSemantic {
+  background-color: transparent !important;
+  /* flex-direction: column !important; */
+  margin: 0.444rem;
+  border: 1px transparent !important;
+  color: var(--main-black);
+  padding: 2rem 1.25rem;
+  width: 100%;
+}
+.cardSemantic a {
+  color: #fff;
+}

@@ -1,0 +1,20 @@
+.head {
+  z-index: 1;
+  padding: 100px 3.36rem 0 0;
+  font-size: 1.5rem;
+  text-align: right;
+  background: var(--main-black);
+  box-shadow: 0 2px 10px 0px #0000007a;
+  color: #ffffffff;
+  min-height: 169px;
+  /* background: url(../../images/name-header-white-7.png), var(--main-black); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+}
+.head::before {
+  content: "grv //";
+}
+.homepage-emoji::before {
+  content: "🙄";
+  font-size: 3.7rem;
+}

@@ -1,0 +1,279 @@
+.homepageContainer {
+  display: grid;
+  grid-template-rows: 86vh auto 1fr auto;
+}
+
+.calloutIndex {
+  background: linear-gradient(#d5edea, #2b2b2b);
+  background-image: url("../assets/images/godzilla-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 60.999% 20%;
+  padding: 0 !important;
+  border: none !important;
+  margin: 0;
+}
+
+.introParaRow,
+.skillsbox,
+.quotebox {
+  margin: 0;
+  width: 100%;
+  padding: 5.063rem 3.375rem;
+}
+.introParaRow {
+  background: var(--color3);
+}
+
+.skillsbox {
+  margin: auto;
+  /* background: #fff; */
+  max-width: 600px;
+  text-align: left;
+}
+
+.quotebox > div {
+  width: fit-content;
+  margin: auto;
+}
+.introParaRow > div {
+  text-align: justify;
+  margin: auto;
+  margin-bottom: 2.25em;
+  padding: 2rem 1rem;
+  font-size: 1.0742rem;
+  max-width: 800px;
+}
+
+.customBlockquote {
+  color: #202020 !important;
+  background: whitesmoke;
+  /* border-style: double; */
+  border: 1px inset rgb(0, 0, 77);
+  box-shadow: 4px 4px #cacaca;
+  margin: auto;
+  margin-bottom: 3em;
+}
+
+.welcomeHeader {
+  text-align: center;
+  font-weight: 400;
+  font-family: var(--header-font);
+  font-size: 3.375rem;
+  line-height: 3.375rem;
+  margin-bottom: 1.5rem;
+}
+
+.profilePhoto {
+  float: left;
+  /* margin-top: 0.667em; */
+  margin-right: 1.5em;
+  margin-bottom: 0.667em;
+  width: inherit;
+  max-width: 30%;
+}
+
+.contentWrap > * {
+  background: var(--color-white);
+}
+
+.contentWrap .row {
+  padding: 2.25rem 1.5rem;
+}
+
+.miniCallout {
+  display: table;
+  font-family: monospace;
+  font-size: 1.5em;
+  line-height: 1em;
+  text-align: center;
+  padding: 0.667em;
+}
+
+.miniCallout footer {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 0.667em;
+  font-weight: 600;
+  float: right;
+  color: #777;
+}
+
+.headerIndex,
+.subheaderIndex {
+  text-align: left;
+}
+
+.headerIndex {
+  font-family: var(--header-font);
+  color: var(--color1);
+  font-size: 3.375rem;
+  font-weight: 900;
+  text-shadow: 1px 1px var(--color-white);
+  padding-top: 3rem;
+  margin-bottom: 0;
+}
+
+.subheaderIndex {
+  font-family: var(--text-font);
+  color: var(--color1);
+  font-size: 1.5em;
+  font-weight: 500;
+  text-shadow: 1px 1px var(--color-white);
+}
+
+.calloutOtherPages {
+  position: relative;
+  max-height: 7.594rem;
+  /* min-height: 25.629em; */
+  /* padding-top: 11.391em !important; */
+  padding: 0 !important;
+  border: none !important;
+  width: auto;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.headerOtherPages {
+  color: var(--color1);
+  text-align: right;
+  font-size: 1.5em;
+  font-weight: 800;
+  /* text-shadow: .5px .5px black; */
+}
+
+.subheaderOtherPages {
+  /* padding-top: 1.5em; */
+  color: white;
+  text-align: right;
+  font-size: 2.25em;
+  font-weight: 600;
+  text-shadow: 0.1em 0.1em var(--color1);
+  text-transform: uppercase;
+}
+
+.topBarCustom {
+  background: transparent;
+  width: 100%;
+  overflow: hidden;
+  padding: 5.063rem 3.375rem;
+}
+
+.topBarMenu li > a {
+  color: var(--color-white);
+  text-shadow: 1px 1px #000000ff;
+  font-weight: 700;
+  padding: 0.5em;
+}
+
+#index-last-row {
+  text-align: center;
+  margin: auto;
+  background: var(--color3);
+  color: var(--color1);
+}
+
+#index-last-row:first-child {
+  margin-top: 1rem;
+}
+
+#index-last-row p {
+  text-align: justify;
+}
+
+#index-last-row i.fa {
+  font-size: 3.375rem;
+  margin-bottom: 0.296em;
+}
+
+#index-last-row hr {
+  display: none;
+}
+
+.indexQuoteblockVerticalPerson {
+  display: flex;
+  margin-left: 1.5rem;
+  align-items: center;
+}
+.indexQuoteblockVerticalAvatar {
+  border-radius: 50%;
+  width: 60px;
+  width: 60px;
+  margin-bottom: 0.5rem;
+}
+.indexQuoteblockVerticalQuote {
+  border-radius: 0 !important;
+  margin-left: 0.5rem !important ;
+  margin-right: 0.5rem !important ;
+  margin-bottom: 1.5rem !important;
+  border: none !important;
+  background: var(--color4) !important;
+  /* width: 80%; */
+}
+.indexQuoteblockVerticalQuote p {
+  word-wrap: none;
+}
+.indexQuoteblockVerticalQuote::after {
+  /* box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
+    0 2px 10px 0 rgba(34, 36, 38, 0.15); */
+  content: "";
+  bottom: -1.25rem;
+  left: 2.25rem;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 1.25rem 1.125rem 0 1.125rem;
+  border-color: var(--color4) transparent transparent transparent;
+  position: absolute;
+}
+.indexQuoteblockVerticalName {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-left: 0.667rem;
+}
+.indexQuoteblockVerticalInfo {
+  font-style: italic;
+  font-size: 14px;
+  color: #7a7a7aff;
+  margin-bottom: 0;
+  margin-left: 0.667rem;
+}
+.informationContainer {
+  text-align: left;
+  display: inline-block;
+}
+
+/* small screens  */
+@media screen and (max-width: 576px) {
+  .contactForm {
+    width: 90%;
+  }
+  .topBarCustom {
+    padding-left: 2.25rem;
+  }
+  .homepageHeaderBtns {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  main.portfolio {
+    padding: 0 !important;
+  }
+  .profilePhoto {
+    max-width: 100%;
+    padding: 2.25rem;
+  }
+}
+
+/* over 1300px  */
+@media screen and (min-width: 1300px) {
+  .profilePhoto {
+    max-width: 250px;
+  }
+  .contactForm {
+    width: 800px;
+  }
+  #about-me {
+    max-width: 800px;
+  }
+}
