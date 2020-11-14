@@ -9,7 +9,10 @@ function PortfolioCards({ projects }) {
   items = projects.map((project, index) => {
     return {
       childKey: index,
-      image: `./images/${project.img_src || "defaultimage01.jpg"}`,
+      image: {
+        src: `./images/${project.img_src || "defaultimage01.jpg"}`,
+        alt: `Screenshot of content from ${project.title}'s site`,
+      },
       header: project.title || "Project Title",
       description: project.lead || "Project Description",
       meta: project.technologies || "Tech Used",
