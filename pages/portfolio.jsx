@@ -143,6 +143,10 @@ function Portfolio({ projies }) {
     <>
       <Head>
         <title>grv.Portfolio</title>
+        <meta
+          name="description"
+          content="Gus Valenzuela's portfolio showcasing all projects currently being worked on or finished."
+        ></meta>
       </Head>
       <MyHeader textContent="PORTFOLIO" />
       <main
