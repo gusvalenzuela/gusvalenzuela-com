@@ -1,12 +1,12 @@
 import React from "react";
-import { Segment, Button } from "semantic-ui-react";
+import { Segment, Button, Icon } from "semantic-ui-react";
 import Head from "next/head";
 import Link from "next/link";
 import MyHeader from "../components/Head";
 import Styles from "../styles/index.module.css";
 import "lazysizes";
 
-const Homepage = () => {
+const Homepage = ({ NASAimage }) => {
   return (
     <>
       <Head>
@@ -19,36 +19,59 @@ const Homepage = () => {
       </Head>
       <MyHeader textContent="HOME" />
       <main className={Styles.homepageContainer} id="homepage-container">
+        {/* P A R A L L A X */}
         <div className={Styles.calloutIndex} id="callout">
-          <div className={Styles.topBarCustom}>
-            <p className={Styles.headerIndex} id="header">
-              Gus Valenzuela
-            </p>
-            <p className={Styles.subheaderIndex} id="subheader">
-              A responsive web developer for the modern world.
-            </p>
-            <div className={Styles.homepageHeaderBtns}>
-              <Button.Group size={"medium"}>
-                <Link href="/portfolio" passHref>
-                  <Button children="Portfolio" color="red" as="a" />
-                </Link>
-                <Button.Or text="" />
-                <Link href="/contact" passHref>
-                  <Button children="Contact" inverted color="red" as="a" />
-                </Link>
-              </Button.Group>
+          <div
+            className={Styles.background}
+            style={{ backgroundImage: `url(${NASAimage.hdurl})` }}
+          >
+            {/* <img
+              src={NASAimage.hdurl}
+              alt={NASAimage.title}
+              name={NASAimage.title}
+              title={NASAimage.explanation}
+            /> */}
+          </div>
+          <div className={Styles.foreground}>
+            <div>
+              <p className={Styles.headerIndex} id="header">
+                Gus Valenzuela
+              </p>
+              <p className={Styles.subheaderIndex} id="subheader">
+                At your service.
+              </p>
+            </div>
+            <div>
+              <Link href="/portfolio" passHref>
+                <Button fluid color="red" animated>
+                  <Button.Content visible>Portfolio</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="arrow right" />
+                  </Button.Content>
+                </Button>
+              </Link>
+            </div>
+            <div>
+              <Link href="/contact" passHref>
+                <Button fluid color="red" animated>
+                  <Button.Content visible>Contact</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="arrow right" />
+                  </Button.Content>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
         <div className={Styles.buttonsContainer}>
           <Link href="/about" passHref>
             <Button color="red" inverted size="massive" fluid animated="fade">
-              <Button.Content visible>READ ABOUT ME</Button.Content>
+              <Button.Content visible>ABOUT ME</Button.Content>
               <Button.Content hidden>Let's Go!</Button.Content>
             </Button>
           </Link>
         </div>
-        <div className={Styles.skillsbox}>
+        <div className={Styles.skillsbox} id="skillsbox">
           <div>
             <Segment inverted style={{ textAlign: "right", height: "100%" }}>
               <p>Technical Skills and Experience</p>
@@ -103,3 +126,28 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
+// This function gets called at build time on server-side.
+// It won't be called on client-side, so you can even do
+// direct database queries. See the "Technical details" section.
+export async function getStaticProps() {
+  const APODQ = process.env.NEXT_PUBLIC_APODQ;
+  const yearInMs = 1000 * 60 * 60 * 24 * 365;
+  var randomNum = Math.floor(Math.random() * yearInMs);
+  const randomDate = new Date(Date.now() - randomNum);
+  // Call NASA API endpoint to get image of the day.
+  const res = await fetch(
+    `https://api.nasa.gov/planetary/apod?api_key=${APODQ}&hd=true&date=${
+      randomDate.toISOString().split("T")[0]
+    }`
+  );
+  const NASAimage = await res.json();
+
+  // By returning { props: NASAimage }, the Homepage component above
+  // will receive `NASAimage` as a prop at build time
+  return {
+    props: {
+      NASAimage,
+    },
+  };
+}
