@@ -16,9 +16,12 @@ main.portfolio {
   margin: auto;
   justify-content: center;
 }
+.grouped-items {
+  padding: 1rem !important;
+}
 
 @media screen and (max-width: 533px) {
   main.portfolio {
-    padding: .444rem !important;
+    padding: 0.444rem !important;
   }
 }
