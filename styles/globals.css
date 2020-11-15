@@ -56,8 +56,13 @@ a {
 .grid-root {
   display: grid;
   height: 100vh !important;
-  grid-template-rows: auto 1fr auto !important;
+  /* grid-template-rows: auto 1fr auto !important; */
   /* min-height: 100%; */
+}
+
+main {
+  /* height subtracts header (~169px) and footer (~140px) */
+  min-height: calc(100vh - 300px);
 }
 
 div[role="navigation"] {
