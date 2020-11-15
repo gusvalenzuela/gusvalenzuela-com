@@ -1,7 +1,50 @@
 import React from "react";
-import { Item } from "semantic-ui-react";
-// import Styles from "./Card.module.css";
+import { Item, Icon, Button } from "semantic-ui-react";
+import Styles from "./PortfolioCards.module.css";
 import "lazysizes";
+function ProjectsExtraContent({ siteSrc, repoSrc }) {
+  return (
+    <>
+      <style jsx>{`
+        section {
+          margin-top: 2.25rem;
+          max-width: fit-content;
+        }
+      `}</style>
+      <section>
+        <Button.Group fluid>
+          <Button
+            color="black"
+            as="a"
+            href={siteSrc}
+            rel="noopener noreferrer"
+            target="_blank"
+            animated="fade"
+          >
+            <Button.Content children="See Site" visible />
+            <Button.Content
+              children={<Icon name="long arrow alternate right" />}
+              hidden
+            />
+          </Button>
+          <Button.Or />
+          <Button
+            color="red"
+            inverted
+            as="a"
+            href={repoSrc}
+            rel="noopener noreferrer"
+            target="_blank"
+            animated="fade"
+          >
+            <Button.Content children="Open Code" visible />
+            <Button.Content children={<Icon name="github" />} hidden />
+          </Button>
+        </Button.Group>
+      </section>
+    </>
+  );
+}
 
 function PortfolioCards({ projects }) {
   let items = [];
@@ -9,14 +52,22 @@ function PortfolioCards({ projects }) {
   items = projects.map((project, index) => {
     return {
       childKey: index,
+      className: Styles.portfolioItem,
       image: {
         src: `./images/${project.img_src || "defaultimage01.jpg"}`,
         alt: `Screenshot of content from ${project.title}'s site`,
+        size: "medium",
       },
       header: project.title || "Project Title",
       description: project.lead || "Project Description",
       meta: project.technologies || "Tech Used",
-      //   extra: "Extra",
+      extra:
+        (
+          <ProjectsExtraContent
+            siteSrc={project.app_url}
+            repoSrc={project.repo_url}
+          />
+        ) || "",
     };
   });
   /* 
@@ -31,7 +82,7 @@ function PortfolioCards({ projects }) {
         extra: 'Extra',
     },
   */
-  return <Item.Group items={items} />;
+  return <Item.Group divided relaxed="very" items={items} />;
 }
 
 export default PortfolioCards;
