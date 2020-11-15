@@ -9,7 +9,7 @@
   /* scaleFactor = (perspective — distance) / perspective 
   distance = Pixels in .foreground's translateZ(3px) (e.g. 3px)
   scaleFactor = scale([0-1])*/
-  perspective-origin: -5% 0%;
+  perspective-origin: -5% 15%;
   display: flex;
 }
 .background {

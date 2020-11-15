@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Segment, Button, Icon } from "semantic-ui-react";
 import Head from "next/head";
 import Link from "next/link";
 import MyHeader from "../components/Head";
 import Styles from "../styles/index.module.css";
 import "lazysizes";
+const APODQ = process.env.NEXT_PUBLIC_APODQ;
 
-const Homepage = ({ NASAimage }) => {
+const Homepage = () => {
+  const [NASAImage, setNASAImage] = useState({});
+  const yearInMs = 1000 * 60 * 60 * 24 * 365;
+  var randomNum = Math.floor(Math.random() * yearInMs);
+  const randomDate = new Date(Date.now() - randomNum);
+
+  const getNasaImage = async () => {
+    const data = await fetch(
+      `https://api.nasa.gov/planetary/apod?api_key=${APODQ}&hd=true&date=${
+        randomDate.toISOString().split("T")[0]
+      }`
+    ).then((r) => r.json());
+
+    setNASAImage(data);
+  };
+  useEffect(() => {
+    getNasaImage();
+  }, [document]);
   return (
     <>
       <Head>
@@ -23,13 +41,13 @@ const Homepage = ({ NASAimage }) => {
         <div className={Styles.calloutIndex} id="callout">
           <div
             className={Styles.background}
-            style={{ backgroundImage: `url(${NASAimage.hdurl})` }}
+            style={{ backgroundImage: `url(${NASAImage.url})` }}
           >
             {/* <img
-              src={NASAimage.hdurl}
-              alt={NASAimage.title}
-              name={NASAimage.title}
-              title={NASAimage.explanation}
+              src={NASAImage.hdurl}
+              alt={NASAImage.title}
+              name={NASAImage.title}
+              title={NASAImage.explanation}
             /> */}
           </div>
           <div className={Styles.foreground}>
@@ -126,28 +144,3 @@ const Homepage = ({ NASAimage }) => {
 };
 
 export default Homepage;
-
-// This function gets called at build time on server-side.
-// It won't be called on client-side, so you can even do
-// direct database queries. See the "Technical details" section.
-export async function getStaticProps() {
-  const APODQ = process.env.NEXT_PUBLIC_APODQ;
-  const yearInMs = 1000 * 60 * 60 * 24 * 365;
-  var randomNum = Math.floor(Math.random() * yearInMs);
-  const randomDate = new Date(Date.now() - randomNum);
-  // Call NASA API endpoint to get image of the day.
-  const res = await fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${APODQ}&hd=true&date=${
-      randomDate.toISOString().split("T")[0]
-    }`
-  );
-  const NASAimage = await res.json();
-
-  // By returning { props: NASAimage }, the Homepage component above
-  // will receive `NASAimage` as a prop at build time
-  return {
-    props: {
-      NASAimage,
-    },
-  };
-}
