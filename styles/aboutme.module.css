@@ -1,0 +1,75 @@
+.aboutmeContainer {
+  display: grid;
+  grid-template-rows: auto;
+  
+}
+
+.calloutIndex {
+  background: linear-gradient(#d5edea, #2b2b2b);
+  background-image: url("../assets/images/godzilla-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 60.999% 20%;
+  padding: 0 !important;
+  border: none !important;
+  margin: 0;
+}
+
+.introParaRow {
+  margin: 0;
+  width: 100%;
+  background: var(--color3);
+  padding: 5.063rem 3.375rem;
+}
+.skillsbox {
+  margin: auto;
+  /* background: #fff; */
+  max-width: 600px;
+  text-align: left;
+}
+
+.introParaRow > div {
+  text-align: justify;
+  margin: auto;
+  margin-bottom: 2.25em;
+  padding: 2rem 1rem;
+  font-size: 1.0742rem;
+  max-width: 800px;
+}
+
+.welcomeHeader {
+  text-align: center;
+  font-weight: 400;
+  font-family: var(--header-font);
+  font-size: 3.375rem;
+  line-height: 3.375rem;
+  margin-bottom: 1.5rem;
+}
+
+.profilePhoto {
+  float: left;
+  /* margin-top: 0.667em; */
+  margin-right: 1.5em;
+  margin-bottom: 0.667em;
+  width: inherit;
+  max-width: 30%;
+}
+
+/* small screens  */
+@media screen and (max-width: 576px) {
+  .profilePhoto {
+    max-width: 100%;
+    padding: 2.25rem;
+  }
+}
+
+/* over 1300px  */
+@media screen and (min-width: 1300px) {
+  .profilePhoto {
+    max-width: 250px;
+  }
+
+  #about-me {
+    max-width: 800px;
+  }
+}
