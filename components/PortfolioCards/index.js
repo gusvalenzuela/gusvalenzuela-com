@@ -10,9 +10,14 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
           margin-top: 2.25rem;
           max-width: fit-content;
         }
+        @media screen and (max-width: 768px) {
+          section {
+            margin: 1.5rem auto 2.25rem;
+          }
+        }
       `}</style>
       <section>
-        <Button.Group fluid>
+        <Button.Group size="tiny" fluid>
           <Button
             color="black"
             as="a"
@@ -21,7 +26,7 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
             target="_blank"
             animated="fade"
           >
-            <Button.Content children="See Site" visible />
+            <Button.Content children="OPEN SITE" visible />
             <Button.Content
               children={<Icon name="long arrow alternate right" />}
               hidden
@@ -37,7 +42,7 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
             target="_blank"
             animated="fade"
           >
-            <Button.Content children="Open Code" visible />
+            <Button.Content children="VIEW CODE" visible />
             <Button.Content children={<Icon name="github" />} hidden />
           </Button>
         </Button.Group>
@@ -53,9 +58,24 @@ function PortfolioCards({ projects }) {
     return {
       childKey: index,
       image: {
-        src: `./images/${project.img_src || "defaultimage01.jpg"}`,
-        alt: `Screenshot of content from ${project.title}'s site`,
         size: "medium",
+        content: (
+          <>
+            <img
+              src={`./images/${project.img_src || "defaultimage01.jpg"}`}
+              alt={`Screenshot of content from ${project.title}'s site`}
+            ></img>
+            <div className={`${Styles.overlay} ${Styles.overlayBottom}`}>
+              <a
+                href={project.app_url}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {project.app_url.split("://")[1]}
+              </a>
+            </div>
+          </>
+        ),
         className: Styles.portfolioImage,
       },
       header: project.title || "Project Title",
