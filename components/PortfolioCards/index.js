@@ -52,11 +52,11 @@ function PortfolioCards({ projects }) {
   items = projects.map((project, index) => {
     return {
       childKey: index,
-      className: Styles.portfolioItem,
       image: {
         src: `./images/${project.img_src || "defaultimage01.jpg"}`,
         alt: `Screenshot of content from ${project.title}'s site`,
         size: "medium",
+        className: Styles.portfolioImage,
       },
       header: project.title || "Project Title",
       description: project.lead || "Project Description",

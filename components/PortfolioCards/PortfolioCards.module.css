@@ -1,0 +1,6 @@
+.portfolioImage {
+  /* box-shadow: pos-x pos-y blur spread color */
+  box-shadow: 0px 5px 7px -2px #00000081;
+  border: 1px transparent !important;
+  border-radius: 0 !important;
+}
