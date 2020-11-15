@@ -1,29 +1,30 @@
 import React from "react";
 import Styles from "./Nav.module.css";
+import Link from "next/link";
 
 function Nav() {
   return (
     <nav className={Styles.sidenavbar} id="sidenavbar">
       <ul className={Styles.navbarNav}>
         <li>
-          <a className={Styles.navbarLinks} href="/">
-            home,
-          </a>
+          <Link href="/">
+            <a className={Styles.navbarLinks}> home,</a>
+          </Link>
         </li>
         <li>
-          <a className={Styles.navbarLinks} href="/#about-me">
-            about,
-          </a>
+          <Link href="/about">
+            <a className={Styles.navbarLinks}> about,</a>
+          </Link>
         </li>
         <li>
-          <a className={Styles.navbarLinks} href="/portfolio">
-            portfolio,
-          </a>
+          <Link href="/portfolio">
+            <a className={Styles.navbarLinks}> portfolio,</a>
+          </Link>
         </li>
         <li>
-          <a className={Styles.navbarLinks} href="/contact">
-            contact.
-          </a>
+          <Link href="/contact">
+            <a className={Styles.navbarLinks}> contact.</a>
+          </Link>
         </li>
       </ul>
     </nav>
