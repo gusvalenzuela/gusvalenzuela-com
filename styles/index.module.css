@@ -1,5 +1,7 @@
 .calloutIndex {
   position: relative;
+  display: flex;
+  background: transparent;
   width: 100%;
   height: calc(100vh - 169.66px);
   overflow-x: hidden;
@@ -8,13 +10,11 @@
   perspective: 16px;
   /* scaleFactor = (perspective — distance) / perspective 
   distance = Pixels in .foreground's translateZ(3px) (e.g. 3px)
-  scaleFactor = scale([0-1])*/
-  perspective-origin: -5% 15%;
-  display: flex;
+  scaleFactor = scale()*/
+  perspective-origin: -5% 33%;
 }
 .background {
   position: absolute;
-  background: linear-gradient(var(--color1), var(--color-white));
   /* background-image: url("../assets/images/godzilla-2.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,7 +29,7 @@
   transform: translateZ(0px);
 }
 .background img {
-  width: 100%;
+  max-height: 200%;
 }
 
 .foreground {
@@ -41,6 +41,21 @@
       minmax(50px, max-content)
     );
 }
+
+.nasaImageContent {
+  clear: both;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+.nasaImageContent > * {
+  margin: auto;
+}
+.nasaImageContent > p {
+  font-size: small;
+  margin: 1rem auto;
+}
+
 .skillsbox,
 .quotebox {
   margin: 0;
@@ -53,6 +68,7 @@
   padding: 5.063rem 3.375rem;
 }
 .buttonsContainer {
+  background-color: var(--color4);
   margin: auto;
   max-width: 600px;
   padding: 2.25rem;
@@ -134,7 +150,7 @@
   color: var(--color1);
   font-size: 3.375rem;
   font-weight: 900;
-  text-shadow: 1px 1px var(--color-white);
+  text-shadow: 0px 1px 5px var(--color-white);
   padding-top: 3rem;
   margin-bottom: 0;
 }
@@ -144,7 +160,7 @@
   color: var(--color1);
   font-size: 1.5em;
   font-weight: 500;
-  text-shadow: 1px 1px var(--color-white);
+  text-shadow: 0px 1px 3px var(--color-white);
 }
 
 .calloutOtherPages {
