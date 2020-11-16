@@ -26,7 +26,7 @@
 .overlayBottom a {
   margin: auto;
   font-size: large;
-  color: #ffff;
+  /* color: #ffff; */
   text-align: center;
   font-weight: 900;padding: 2px;
 }

@@ -109,8 +109,9 @@ const Homepage = () => {
               NASA's Image of the Day
             </a>
             , fetched at random on each page load.
-            <a style={{ cursor: "pointer" }} onClick={getNasaImage}>
-              {!imageRefreshing ? " Refresh the image." : " Fetching new image."}
+            <a onClick={getNasaImage}>
+              {" "}
+              {!imageRefreshing ? "Refresh the image." : "Fetching new image."}
             </a>
           </p>
         </div>
