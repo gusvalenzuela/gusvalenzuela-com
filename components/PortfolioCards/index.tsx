@@ -1,7 +1,10 @@
 import React from "react";
-import { Item, Icon, Button } from "semantic-ui-react";
+import { Item, Icon, Button, ItemProps } from "semantic-ui-react";
 import Styles from "./PortfolioCards.module.css";
 import "lazysizes";
+import { SemanticShorthandCollection } from "semantic-ui-react/dist/commonjs/generic";
+import { GusProject } from "../../generic";
+
 function ProjectsExtraContent({ siteSrc, repoSrc }) {
   return (
     <>
@@ -52,10 +55,9 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
 }
 
 function PortfolioCards({ projects }) {
-  let items = [];
   // extract the correct information needed to go in item.group of semantic UI (see sample below)
-  items = projects.map((project, index) => {
-    return {
+  let items: SemanticShorthandCollection<ItemProps> = projects.map(
+    (project: GusProject, index: number) => ({
       childKey: index,
       image: {
         size: "medium",
@@ -81,15 +83,13 @@ function PortfolioCards({ projects }) {
       header: project.title || "Project Title",
       description: project.lead || "Project Description",
       meta: project.technologies || "Tech Used",
-      extra:
-        (
-          <ProjectsExtraContent
-            siteSrc={project.app_url}
-            repoSrc={project.repo_url}
-          />
-        ) || "",
-    };
-  });
+      extra: (
+        <ProjectsExtraContent
+          siteSrc={project.app_url}
+          repoSrc={project.repo_url} />
+      ) || "",
+    })
+  );
   /* 
     Item.Group's items =  Shorthand array of props for Item
     sample Item: 
