@@ -62,7 +62,7 @@ module.exports = {
       app_url: "https://metaphotojs.herokuapp.com",
       repo_url: "https://github.com/MastadonRising/MetaPhoto",
       repo_name: "MetaPhoto",
-      img_src: "metaphoto-2.png",
+      img_src: "metaphoto-2a.png",
       img_alt: "Screenshot of application",
     },
     {

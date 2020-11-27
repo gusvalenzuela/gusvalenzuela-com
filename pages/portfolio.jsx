@@ -11,7 +11,7 @@ import Styles from "../styles/portfolio.module.css";
 const KONAMI_LINK = process.env.NEXT_PUBLIC_KONAMI_LINK;
 
 function Portfolio({ projies }) {
-  const PortfolioVersion = 4; // change the version when changes to projectsDB are made so cache is updated
+  const PortfolioVersion = 5; // change the version when changes to projectsDB are made so cache is updated
 
   // Setting our component's initial state
   const [projects, setProjects] = useState([]);
