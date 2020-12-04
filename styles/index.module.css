@@ -15,6 +15,7 @@
 }
 .background {
   position: absolute;
+  background: linear-gradient(#000000, #a2aaff);
   /* background-image: url("../assets/images/godzilla-2.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,7 +30,8 @@
   transform: translateZ(0px);
 }
 .background img {
-  max-height: 200%;
+  width: auto;
+  max-width: 100%;
 }
 
 .foreground {
