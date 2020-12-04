@@ -1,33 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { Segment, Button, Icon } from "semantic-ui-react";
-import Head from "next/head";
-import Link from "next/link";
-import MyHeader from "../components/Head";
-import Styles from "../styles/index.module.css";
-import "lazysizes";
+/* eslint-disable max-len */
+import React, {useEffect, useState} from 'react';
+import {Segment, Button, Icon} from 'semantic-ui-react';
+import Head from 'next/head';
+import Link from 'next/link';
+import MyHeader from '../components/Head';
+import Styles from '../styles/index.module.css';
+import 'lazysizes';
 const APODQ = process.env.NEXT_PUBLIC_APODQ;
 
 const Homepage = () => {
-  const [NASAImage, setNASAImage] = useState({});
+  const [NASAImage, setNASAImage]: any = useState({});
   const [imageRefreshing, setImageRefreshing] = useState(false);
-  const yearInMilliseconds = 1000 * 60 * 60 * 24 * 365;
-  var randomNum = Math.floor(Math.random() * yearInMilliseconds);
-  const randomDate = new Date(Date.now() - randomNum); // random date between now and a year ago
 
-  const getNasaImage = async () => {
+  const getNasaImage = async (randomDate: Date) => {
     setImageRefreshing(true);
     const data = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${APODQ}&hd=true&date=${
-        randomDate.toISOString().split("T")[0]
-      }`
+        randomDate.toISOString().split('T')[0]
+      }`,
     ).then((r) => r.json());
 
     if (data) setImageRefreshing(false);
+
     setNASAImage(data);
   };
   // on document load/change
   useEffect(() => {
-    getNasaImage();
+    const yearInMilliseconds = 1000 * 60 * 60 * 24 * 365;
+    const randomNum = Math.floor(Math.random() * yearInMilliseconds);
+    // random date between now and a year ago
+    const randomDate = new Date(Date.now() - randomNum);
+    getNasaImage(randomDate);
   }, [document]);
   return (
     <>
@@ -54,7 +57,7 @@ const Homepage = () => {
             <img
               src={NASAImage.hdurl}
               alt={NASAImage.title}
-              name={NASAImage.title}
+              // name={NASAImage.title}
               title={NASAImage.explanation}
             />
           </div>
@@ -100,18 +103,18 @@ const Homepage = () => {
             )}
           </h5>
           <p>
-            The image above is from{" "}
+            The image above is from{' '}
             <a
               href="https://apod.nasa.gov/apod/astropix.html"
               target="_blank"
               rel="noopener noreferrer"
             >
-              NASA's Image of the Day
+              NASA&apos;s Image of the Day
             </a>
             , fetched at random on each page load.
-            <a onClick={getNasaImage}>
-              {" "}
-              {!imageRefreshing ? "Refresh the image." : "Fetching new image."}
+            <a onClick={() => getNasaImage}>
+              {' '}
+              {!imageRefreshing ? 'Refresh the image.' : 'Fetching new image.'}
             </a>
           </p>
         </div>
@@ -119,19 +122,20 @@ const Homepage = () => {
           <Link href="/about" passHref>
             <Button color="red" inverted size="massive" fluid animated="fade">
               <Button.Content visible>ABOUT ME</Button.Content>
-              <Button.Content hidden>Let's Go!</Button.Content>
+              <Button.Content hidden>Let&apos;s Go!</Button.Content>
             </Button>
           </Link>
         </div>
         <div className={Styles.skillsbox} id="skillsbox">
           <div>
-            <Segment inverted style={{ textAlign: "right", height: "100%" }}>
+            <Segment inverted style={{textAlign: 'right', height: '100%'}}>
               <p>Technical Skills and Experience</p>
             </Segment>
           </div>
           <div>
             <Segment vertical>
-              <b>FRONT END</b>: HTML5, CSS3, Bootstrap, React, Semantic-UI
+              <b>FRONT END</b>: HTML5, CSS3, Bootstrap, React, Semantic-UI,
+              NextJS, Svelte
             </Segment>
             <Segment vertical>
               <b>BACK END</b>: Node, MySQL, MongoDB, Express, Mongoose,
@@ -147,11 +151,11 @@ const Homepage = () => {
           <div>
             <Segment className={Styles.indexQuoteblockVerticalQuote}>
               <p>
-                "And remember, the world is possibility{" "}
+                &quot;And remember, the world is possibility{' '}
                 <i>
                   <b>[sic]</b>
-                </i>{" "}
-                if only you'll discover it."{" "}
+                </i>{' '}
+                if only you&apos;ll discover it.&quot;{' '}
               </p>
             </Segment>
             <div className={Styles.indexQuoteblockVerticalPerson}>
