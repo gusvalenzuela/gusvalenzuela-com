@@ -1,0 +1,12 @@
+trailingComma: 'all'
+semi: true
+singleQuote: true
+bracketSpacing: false
+endOfLine: 'lf'
+# proseWrap: 'always'
+overrides:
+  - files:
+      - '*.test.js*'
+      # - '*.test.jsx'
+    options:
+      semi: true
