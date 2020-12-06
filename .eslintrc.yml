@@ -14,9 +14,9 @@ parserOptions:
 plugins:
   - react
   - '@typescript-eslint'
-rules:
-  {
+rules: {
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
-    'no-nested-ternary': 'off',
+    # 'no-nested-ternary': 'off',
+    'indent': ['error', 2],
   }
