@@ -12,8 +12,13 @@ const Homepage = () => {
   const [NASAImage, setNASAImage]: any = useState({});
   const [imageRefreshing, setImageRefreshing] = useState(false);
 
-  const getNasaImage = async (randomDate: Date) => {
+  const getNasaImage = async () => {
     setImageRefreshing(true);
+
+    const yearInMilliseconds = 1000 * 60 * 60 * 24 * 365;
+    const randomNum = Math.floor(Math.random() * yearInMilliseconds);
+    // random date between now and a year ago
+    const randomDate = new Date(Date.now() - randomNum);
     const data = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${APODQ}&hd=true&date=${
         randomDate.toISOString().split('T')[0]
@@ -26,11 +31,7 @@ const Homepage = () => {
   };
   // on document load/change
   useEffect(() => {
-    const yearInMilliseconds = 1000 * 60 * 60 * 24 * 365;
-    const randomNum = Math.floor(Math.random() * yearInMilliseconds);
-    // random date between now and a year ago
-    const randomDate = new Date(Date.now() - randomNum);
-    getNasaImage(randomDate);
+    getNasaImage();
   }, [document]);
   return (
     <>
@@ -52,14 +53,14 @@ const Homepage = () => {
         <div className={Styles.calloutIndex} id="callout">
           <div
             className={Styles.background}
-            // style={{ backgroundImage: `url(${NASAImage.url})` }}
+            style={{backgroundImage: `url(${NASAImage.url})`}}
           >
-            <img
-              src={NASAImage.hdurl}
+            {/* <img
+              src={NASAImage.url}
               alt={NASAImage.title}
               // name={NASAImage.title}
               title={NASAImage.explanation}
-            />
+            /> */}
           </div>
           <div className={Styles.foreground}>
             <div>
@@ -112,7 +113,7 @@ const Homepage = () => {
               NASA&apos;s Image of the Day
             </a>
             , fetched at random on each page load.
-            <a onClick={() => getNasaImage}>
+            <a onClick={() => getNasaImage()}>
               {' '}
               {!imageRefreshing ? 'Refresh the image.' : 'Fetching new image.'}
             </a>
