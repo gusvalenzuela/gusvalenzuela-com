@@ -1,35 +1,37 @@
-import React, { useState } from "react";
-import Head from "next/head";
-import { Form, Button, Label } from "semantic-ui-react";
-import API from "../utils/API";
-import MyHeader from "../components/Head";
-import Styles from "../styles/contact.module.css";
+import React, { useState } from 'react';
+import Head from 'next/head';
+import { Form, Button, Label } from 'semantic-ui-react';
+import API from '../utils/API';
+import MyHeader from '../components/Head';
+import Styles from '../styles/contact.module.css';
 
 function Contact() {
   // document.title = `grv.Contact`;
   const emailDefault = {
-    name: "",
-    email: "",
-    message: "",
-    success: "",
-    btnMsg: "Send",
+    name: '',
+    email: '',
+    message: '',
+    success: '',
+    btnMsg: 'Send',
     attempts: 0,
+    sending: false,
   };
   const [emailData, setEmailData] = useState(emailDefault);
 
-  function handleFormSubmission(event) {
+  async function handleFormSubmission(event) {
     event.preventDefault();
 
     // name & email is "required"
-    if ((emailData.name.trim() && emailData.email.trim()) !== "") {
-      setEmailData({ ...emailData, btnMsg: "Sending..." });
+    if ((emailData.name.trim() && emailData.email.trim()) !== '') {
+      setEmailData({ ...emailData, btnMsg: 'Sending...', sending: true });
 
       API.sendContactEmail(emailData).then((res) => {
-        if ((res.data = `success`)) {
-          setEmailData({ ...emailData, success: true, btnMsg: "Sent" });
+        if (res.message === `success`) {
+          setEmailData({ ...emailData, success: true, btnMsg: 'Sent' });
         } else {
-          setEmailData({ ...emailData, success: false, btnMsg: "Fail" });
+          setEmailData({ ...emailData, success: false, btnMsg: 'Fail' });
         }
+
         // after 7 secs, form data and message/toast is cleared
         setTimeout(() => {
           setEmailData(emailDefault);
@@ -56,16 +58,16 @@ function Contact() {
         <Form action="#" className={Styles.contactForm} id="contact-form">
           <h2>Send an email:</h2>
           <Form.Field>
-            <label>
-              Name{" "}
-              <span style={{ color: "#ff0000ff", fontWeight: "600" }}>*</span>
-              <span style={{ float: "right" }}>* Required Fields</span>
+            <label htmlFor="#name">
+              Name{' '}
+              <span style={{ color: '#ff0000ff', fontWeight: '600' }}>*</span>
+              <span style={{ float: 'right' }}>* Required Fields</span>
             </label>
             <input
               className={`input ${
-                emailData.name === "" && emailData.attempts > 0
+                emailData.name === '' && emailData.attempts > 0
                   ? Styles.displayError
-                  : ""
+                  : ''
               }`}
               id="name"
               name="name"
@@ -80,7 +82,7 @@ function Contact() {
             <Label
               style={{
                 display: `${
-                  emailData.name === "" && emailData.attempts > 0 ? "" : "none"
+                  emailData.name === '' && emailData.attempts > 0 ? '' : 'none'
                 }`,
               }}
               pointing
@@ -90,15 +92,15 @@ function Contact() {
             </Label>
           </Form.Field>
           <Form.Field>
-            <label>
-              Email{" "}
-              <span style={{ color: "#ff0000ff", fontWeight: "600" }}>*</span>
+            <label htmlFor="#email">
+              Email{' '}
+              <span style={{ color: '#ff0000ff', fontWeight: '600' }}>*</span>
             </label>
             <input
               className={`input ${
-                emailData.email === "" && emailData.attempts > 0
+                emailData.email === '' && emailData.attempts > 0
                   ? Styles.displayError
-                  : ""
+                  : ''
               }`}
               id="email"
               name="email"
@@ -113,7 +115,7 @@ function Contact() {
             <Label
               style={{
                 display: `${
-                  emailData.email === "" && emailData.attempts > 0 ? "" : "none"
+                  emailData.email === '' && emailData.attempts > 0 ? '' : 'none'
                 }`,
               }}
               pointing
@@ -123,28 +125,30 @@ function Contact() {
             </Label>
           </Form.Field>
           <Form.Field>
-            <label>Message</label>
-            <textarea
-              className={Styles.input}
-              id="message"
-              name="message"
-              type="text"
-              maxLength="4096"
-              placeholder="Hello there!"
-              onChange={(e) =>
-                setEmailData({ ...emailData, message: e.target.value })
-              }
-              value={emailData.message}
-            />
+            <label htmlFor="#message">
+              Message
+              <textarea
+                className={Styles.input}
+                id="message"
+                name="message"
+                type="text"
+                maxLength="4096"
+                placeholder="Hello there!"
+                onChange={(e) =>
+                  setEmailData({ ...emailData, message: e.target.value })
+                }
+                value={emailData.message}
+              />
+            </label>
           </Form.Field>
-          <div style={{ display: "flow-root" }}>
+          <div style={{ display: 'flow-root' }}>
             <div
               style={{
-                display: `${!emailData.success ? "none" : ""}`,
-                padding: "1rem",
-                textAlign: "center",
-                color: "#ff0000",
-                fontWeight: "800",
+                display: `${!emailData.success ? 'none' : ''}`,
+                padding: '1rem',
+                textAlign: 'center',
+                color: '#ff0000',
+                fontWeight: '800',
               }}
             >
               <p>
@@ -155,14 +159,14 @@ function Contact() {
               className="send-button"
               type="submit"
               secondary
-              content={"Coming Soon" || emailData.btnMsg}
+              content={emailData.btnMsg}
               onClick={handleFormSubmission}
-              style={{ float: "right", width: "auto", padding: "1rem 2rem" }}
-              disabled
+              style={{ float: 'right', width: 'auto', padding: '1rem 2rem' }}
+              disabled={emailData.sending}
             />
           </div>
         </Form>
-        <section style={{ textAlign: "center", margin: "2.25rem 0" }}>
+        <section style={{ textAlign: 'center', margin: '2.25rem 0' }}>
           <p>Alternatively,</p>
           <div className="contact-page-icons">
             <Button
