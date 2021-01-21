@@ -1,18 +1,33 @@
+root: true
+ignorePatterns:
+  - '*.ts'
 env:
-  browser: true
+  browser: true # Enables browser globals like window and document
   es2021: true
-  node: true
+  node: true # Enables Node.js global variables and Node.js scoping.
+  amd: true # Enables require() and define() as global variables as per the amd spec.
 extends:
-  - 'plugin:react/recommended'
-  - google
+  - eslint:recommended
+  - airbnb
+  - airbnb/hooks
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+  - plugin:jsx-a11y/recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:import/typescript # important bit for when using typescript
+  - prettier
+  - prettier/react
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaFeatures:
-    jsx: true
-  ecmaVersion: 12
-  sourceType: module
+    jsx: true # Enable JSX since we're using React
+  ecmaVersion: 2020 # Use the latest ecmascript standard
+  sourceType: module # Allows using import/export statements
 plugins:
+  - import
   - react
+<<<<<<< HEAD
   - '@typescript-eslint'
 rules: {
     'import/prefer-default-export': 'off',
@@ -20,3 +35,35 @@ rules: {
     # 'no-nested-ternary': 'off',
     'indent': ['error', 2],
   }
+=======
+  - '@typescript-eslint' # important bit for when using typescript
+settings:
+  react:
+    version: detect # Automatically detect the react version
+rules:
+  no-plusplus:
+    - error
+    - {allowForLoopAfterthoughts: true}
+  no-underscore-dangle:
+    - warn
+    - {allow: ['_id']}
+  # no-param-reassign: off
+  no-nested-ternary: off
+  no-use-before-define: off
+  import/extensions:
+    - warn
+    - {json: always}
+  import/prefer-default-export: off
+  jsx-a11y/anchor-is-valid:
+    off
+    # - error
+    # - {
+    #     components: ['Link'],
+    #     specialLink: ['hrefLeft', 'hrefRight'],
+    #     aspects: ['noHref', 'invalidHref', 'preferButton'],
+    #   }
+  jsx-a11y/click-events-have-key-events: off
+  react/jsx-props-no-spreading: off
+  react/jsx-filename-extension: off
+  react/prop-types: off
+>>>>>>> e357914489718812b2a13b0910a86d124dc8f2f9
