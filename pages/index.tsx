@@ -1,11 +1,14 @@
 /* eslint-disable max-len */
-import React, {useEffect, useState} from 'react';
-import {Segment, Button, Icon} from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Segment } from 'semantic-ui-react';
 import Head from 'next/head';
-import Link from 'next/link';
 import MyHeader from '../components/Head';
+import About from '../components/About';
+import Parallax from '../components/Parallax';
+import ContactForm from '../components/ContactForm';
 import Styles from '../styles/index.module.css';
 import 'lazysizes';
+
 const APODQ = process.env.NEXT_PUBLIC_APODQ;
 
 const Homepage = () => {
@@ -29,10 +32,7 @@ const Homepage = () => {
 
     setNASAImage(data);
   };
-  // on document load/change
-  useEffect(() => {
-    getNasaImage();
-  }, [document]);
+
   return (
     <>
       <Head>
@@ -41,59 +41,16 @@ const Homepage = () => {
         <link
           href="https://fonts.googleapis.com/css2?family=Lobster&amp;family=Montserrat&amp;family=Open+Sans&amp;family=Poiret+One&amp;family=Roboto&amp;family=Special+Elite&amp;display=swap"
           rel="stylesheet"
-        ></link>
+        />
         <meta
           name="description"
           content="Gus Valenzuela's personal website displaying different web development skills and various links to other pages on the site."
-        ></meta>
+        />
       </Head>
       <MyHeader textContent="HOME" />
       <main className={Styles.homepageContainer} id="homepage-container">
         {/* P A R A L L A X */}
-        <div className={Styles.calloutIndex} id="callout">
-          <div
-            className={Styles.background}
-            style={{backgroundImage: `url(${NASAImage.url})`}}
-          >
-            {/* <img
-              src={NASAImage.url}
-              alt={NASAImage.title}
-              // name={NASAImage.title}
-              title={NASAImage.explanation}
-            /> */}
-          </div>
-          <div className={Styles.foreground}>
-            <div>
-              <p className={Styles.headerIndex} id="header">
-                Gus <br />
-                Valenzuela
-              </p>
-              <p className={Styles.subheaderIndex} id="subheader">
-                At your service.
-              </p>
-            </div>
-            <div>
-              <Link href="/portfolio" passHref>
-                <Button color="red" animated>
-                  <Button.Content visible>Portfolio</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name="arrow right" />
-                  </Button.Content>
-                </Button>
-              </Link>
-            </div>
-            <div>
-              <Link href="/contact" passHref>
-                <Button color="red" animated>
-                  <Button.Content visible>Contact</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name="arrow right" />
-                  </Button.Content>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <Parallax backgroundImg={NASAImage} foregroundImg={{}} middleImg={{}} />
         <div className={Styles.nasaImageContent}>
           <h2>{NASAImage.title}</h2>
           <h5>
@@ -103,33 +60,45 @@ const Homepage = () => {
               </>
             )}
           </h5>
-          <p>
-            The image above is from{' '}
-            <a
-              href="https://apod.nasa.gov/apod/astropix.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              NASA&apos;s Image of the Day
-            </a>
-            , fetched at random on each page load.
-            <a onClick={() => getNasaImage()}>
-              {' '}
-              {!imageRefreshing ? 'Refresh the image.' : 'Fetching new image.'}
-            </a>
-          </p>
+
+          {!NASAImage.url ? (
+            <p>
+              <a role="button" tabIndex={0} onClick={() => getNasaImage()}>
+                {' '}
+                {!imageRefreshing ? 'Click here' : 'Fetching new image.'}
+              </a>{' '}
+              to change the background image of the header above.
+            </p>
+          ) : (
+            <>
+              <p>
+                Image taken from{' '}
+                <a
+                  href="https://apod.nasa.gov/apod/astropix.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  NASA&apos;s Image of the Day
+                </a>
+              </p>
+              <button type="button" onClick={() => getNasaImage()}>
+                {' '}
+                {!imageRefreshing ? 'Change again' : 'Fetching new image.'}
+              </button>{' '}
+              or{' '}
+              <button type="button" onClick={() => setNASAImage({})}>
+                {' '}
+                Return to default
+              </button>
+            </>
+          )}
         </div>
-        <div className={Styles.buttonsContainer}>
-          <Link href="/about" passHref>
-            <Button color="red" inverted size="massive" fluid animated="fade">
-              <Button.Content visible>ABOUT ME</Button.Content>
-              <Button.Content hidden>Let&apos;s Go!</Button.Content>
-            </Button>
-          </Link>
+        <div className={Styles.bioContainer}>
+          <About />
         </div>
         <div className={Styles.skillsbox} id="skillsbox">
           <div>
-            <Segment inverted style={{textAlign: 'right', height: '100%'}}>
+            <Segment inverted style={{ textAlign: 'right', height: '100%' }}>
               <p>Technical Skills and Experience</p>
             </Segment>
           </div>
@@ -147,6 +116,9 @@ const Homepage = () => {
               Handlebars, jQuery, REST, APIs, UI, OAuth2
             </Segment>
           </div>
+        </div>
+        <div className={Styles.contactContainer}>
+          <ContactForm />
         </div>
         <div className={Styles.quotebox}>
           <div>
