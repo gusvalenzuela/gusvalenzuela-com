@@ -11,11 +11,11 @@ function Nav() {
             <a className={Styles.navbarLinks}> home,</a>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href="/about">
             <a className={Styles.navbarLinks}> about,</a>
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link href="/portfolio">
             <a className={Styles.navbarLinks}> portfolio,</a>
