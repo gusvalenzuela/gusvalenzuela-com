@@ -27,11 +27,12 @@ async function handler(req, res) {
   // Run the middleware
   await runMiddleware(req, res, cors);
 
+  const { name, email, message } = req.body;
+  if (!name || !email || !message)
+    return res.json({ data: null, message: 'Empty body' });
+
   // Rest of the API logic
-
   if (req.method === 'POST') {
-    const data = req.body;
-
     const oauth2Client = new OAuth2(
       process.env.CLIENT_ID || 'Your ClientID Here', // ClientID
       process.env.CLIENT_SECRET || 'Your Client Secret Here', // Client Secret
@@ -58,11 +59,11 @@ async function handler(req, res) {
     // send mail with defined transport object
     transporter.sendMail(
       {
-        from: `"${data.name || `Name`}" <${data.email || 'email@example.com'}>`,
+        from: `"${name || `Name`}" <${email || 'email@example.com'}>`,
         to: 'gusrvalenzuela@gmail.com', // list of receivers
         subject: 'Email from gusvalenzuela.com',
-        // text: data.message || "Hello world?", // plain text body
-        html: `<p>${data.message || 'Empty message'}</p>`, // html body
+        // text: message || "Hello world?", // plain text body
+        html: `<p>${message || 'Empty message'}</p>`, // html body
       },
       (err, resp) => {
         if (err) {
@@ -75,6 +76,8 @@ async function handler(req, res) {
       },
     );
   }
+
+  return res.end();
 }
 
 export const config = {
