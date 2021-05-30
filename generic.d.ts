@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 // ======================================================
 // Types
@@ -6,15 +6,16 @@ import * as React from "react";
 
 export type GusProject = {
   title: string;
-  version: string;
+  version?: string;
   lead: string;
   technologies: string;
-  description: string;
+  description?: string;
   app_url: string;
   repo_url: string;
   repo_name: string;
   img_src: string;
-  img_alt: string;
+  img_alt?: string;
+  updated_at?: string;
 };
 
 // ======================================================
