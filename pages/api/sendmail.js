@@ -3,6 +3,13 @@ import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 
 const { OAuth2 } = google.auth;
+const {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  MAIL_USER,
+  REDIRECT_URL,
+  REFRESH_TOKEN,
+} = process.env;
 
 // Initializing the cors middleware
 const cors = Cors({
@@ -27,32 +34,41 @@ async function handler(req, res) {
   // Run the middleware
   await runMiddleware(req, res, cors);
 
-  const { name, email, message } = req.body;
-  if (!name || !email || !message)
-    return res.json({ data: null, message: 'Empty body' });
-
   // Rest of the API logic
   if (req.method === 'POST') {
+    // if name, email, or message is empty/blank
+    // respond with "empty body" message
+    const { name, email, message } = req.body;
+    if (!name || !email || !message)
+      return res.json({ data: null, message: 'Empty body' });
+
+    // make OAuth Client to get access token
     const oauth2Client = new OAuth2(
-      process.env.CLIENT_ID || 'Your ClientID Here', // ClientID
-      process.env.CLIENT_SECRET || 'Your Client Secret Here', // Client Secret
-      'https://developers.google.com/oauthplayground', // Redirect URL
+      CLIENT_ID, // ClientID
+      CLIENT_SECRET, // Client Secret
+      REDIRECT_URL, // Redirect URL
     );
 
+    // set OAuth Client credentials with Refresh Token
+    // grabbed my Refresh token from OAuth Playground
     oauth2Client.setCredentials({
-      refresh_token: process.env.REFRESH_TOKEN,
+      refresh_token: REFRESH_TOKEN,
     });
 
+    // get access token to use with Nodemailer's transporter
     const accessToken = oauth2Client.getAccessToken();
 
+    // create the authenticated transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      secure: true,
+      port: 465,
       auth: {
         type: 'OAuth2',
-        user: process.env.MAIL_USER,
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        refreshToken: process.env.REFRESH_TOKEN,
+        user: MAIL_USER,
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
         accessToken,
       },
     });
