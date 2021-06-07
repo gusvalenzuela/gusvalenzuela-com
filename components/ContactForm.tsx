@@ -63,7 +63,7 @@ const ContactForm = () => {
       setEmailData({ ...emailData, btnMsg: 'Sending...', sending: true });
 
       API.sendContactEmail(emailData).then((res) => {
-        if (res.message === `success`) {
+        if (res.status === 200) {
           setEmailData({ ...emailData, success: true, btnMsg: 'Sent' });
         } else {
           setEmailData({ ...emailData, success: false, btnMsg: 'Fail' });
