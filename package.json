@@ -1,6 +1,6 @@
 {
   "name": "gusvalenzuela-personal-website",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,21 +11,21 @@
     "axios": "0.21.1",
     "cors": "^2.8.5",
     "dotenv": "10.0.0",
-    "googleapis": "^75.0.0",
+    "googleapis": "^82.0.0",
     "lazysizes": "5.3.2",
     "moment": "2.29.1",
-    "next": "10.2.3",
-    "nodemailer": "^6.4.17",
+    "next": "11.0.1",
+    "nodemailer": "^6.6.3",
     "react": "^17.0",
     "react-dom": "^17.0",
     "react-moment": "1.1.1",
     "react-sidebar": "3.0.2",
     "semantic-ui-css": "2.4.1",
     "semantic-ui-react": "2.0.3",
-    "zustand": "3.5.2"
+    "zustand": "3.5.7"
   },
   "devDependencies": {
-    "@types/node": "^15.12.1",
+    "@types/node": "^16.4.3",
     "@types/react": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
