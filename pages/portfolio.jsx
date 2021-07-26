@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect } from 'react';
 // import Moment from "react-moment";
 import Head from 'next/head';
@@ -8,6 +9,7 @@ import ResumeCard from '../components/ResumeCard';
 import MyHeader from '../components/Head';
 import LocalProjects from '../utils/seed';
 import Styles from '../styles/portfolio.module.css';
+
 const KONAMI_LINK = process.env.NEXT_PUBLIC_KONAMI_LINK;
 
 function Portfolio() {
@@ -31,20 +33,16 @@ function Portfolio() {
 
   // listening to projects
   useEffect(() => {
-    saveProjCache();
-  }, [projects]);
+    // saveProjCache
 
-  function saveProjCache() {
-    let sanitizedProjects = projects.map((i) => {
-      delete i._id;
-      return i;
-    });
+    const sanitizedProjects = projects.map((i) => ({ ...i, _id: '' }));
 
     return localStorage.setItem(
       `gusvalenzuela.com-cache-v${PortfolioVersion}-projects`,
       JSON.stringify(sanitizedProjects),
     );
-  }
+  }, [projects]);
+
   function clearOldProjectsCache() {
     for (let i = 0; i < PortfolioVersion; i++) {
       localStorage.removeItem(`gusvalenzuela.com-cache-v${i}-projects`);
@@ -62,7 +60,7 @@ function Portfolio() {
   }
   // Loads all Projects and sets them to Projects
   function loadProjects() {
-    //checking to see if a local projects obj exists, and using that
+    //  checking to see if a local projects obj exists, and using that
     const localStorageProjects = JSON.parse(
       localStorage.getItem(
         `gusvalenzuela.com-cache-projects-v${PortfolioVersion}`,
@@ -77,9 +75,9 @@ function Portfolio() {
     // continues if no cache found and uses the Local seed found in /utils
     // should later be moved to CMS
     if (!LocalProjects.projectsSeed || LocalProjects.projectsSeed.length < 1) {
-      res.data = [];
+      return null;
     }
-    loadGithubData(LocalProjects.projectsSeed);
+    return loadGithubData(LocalProjects.projectsSeed);
   }
 
   function loadGithubData(Projects) {
@@ -93,8 +91,9 @@ function Portfolio() {
         repos.data.forEach((item) => {
           // adding last updated date to each of projects in state
           Projects.forEach((proj) => {
-            if (proj.repo_name === item.name) {
-              proj.updated_at = item.updated_at;
+            const newProj = proj;
+            if (newProj.repo_name === item.name) {
+              newProj.updated_at = item.updated_at;
             }
           });
         });
@@ -105,7 +104,6 @@ function Portfolio() {
 
   // KONAMI CODE
   const [KC, setKC] = useState(null);
-  var KonamiCode = [];
 
   useEffect(() => {
     if (KC === 'KC') {
@@ -114,11 +112,11 @@ function Portfolio() {
       window.location.href = KONAMI_LINK;
     }
     if (KC !== null) {
+      let KonamiCode = [];
       // Add event listeners
       window.addEventListener('keyup', (evt) => {
         KonamiCode.push(evt.code.trim());
         if (KonamiCode.length === 10) {
-          console.log(KonamiCode.join(``), KonamiCode.length);
           if (
             KonamiCode.join(``).toString() ===
             'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightKeyBKeyA'
@@ -136,7 +134,8 @@ function Portfolio() {
         });
       };
     }
-  }, [KC, KonamiCode]);
+    return () => {};
+  }, [KC]);
 
   return projects.length ? (
     <>
@@ -145,14 +144,11 @@ function Portfolio() {
         <meta
           name="description"
           content="Gus Valenzuela's portfolio showcasing all projects currently being worked on or finished."
-        ></meta>
+        />
       </Head>
       <MyHeader textContent="PORTFOLIO" />
       <main
-        onClick={() => {
-          KonamiCode = [];
-          setKC('run');
-        }}
+        onClick={() => setKC('run')}
         role="main"
         className={Styles.portfolio}
       >

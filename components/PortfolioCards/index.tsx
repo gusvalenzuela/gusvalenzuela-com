@@ -1,9 +1,9 @@
-import React from "react";
-import { Item, Icon, Button, ItemProps } from "semantic-ui-react";
-import Styles from "./PortfolioCards.module.css";
-import "lazysizes";
-import { SemanticShorthandCollection } from "semantic-ui-react/dist/commonjs/generic";
-import { GusProject } from "../../generic";
+import React from 'react';
+import { Item, Icon, Button, ItemProps } from 'semantic-ui-react';
+import type { SemanticShorthandCollection } from 'semantic-ui-react/dist/commonjs/generic';
+import type { GusProject } from '../../generic';
+import Styles from './PortfolioCards.module.css';
+import 'lazysizes';
 
 function ProjectsExtraContent({ siteSrc, repoSrc }) {
   return (
@@ -29,11 +29,10 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
             target="_blank"
             animated="fade"
           >
-            <Button.Content children="OPEN SITE" visible />
-            <Button.Content
-              children={<Icon name="long arrow alternate right" />}
-              hidden
-            />
+            <Button.Content visible>OPEN SITE</Button.Content>
+            <Button.Content hidden>
+              <Icon name="long arrow alternate right" />
+            </Button.Content>
           </Button>
           <Button.Or />
           <Button
@@ -45,8 +44,10 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
             target="_blank"
             animated="fade"
           >
-            <Button.Content children="VIEW CODE" visible />
-            <Button.Content children={<Icon name="github" />} hidden />
+            <Button.Content visible>VIEW CODE</Button.Content>
+            <Button.Content hidden>
+              <Icon name="github" />
+            </Button.Content>
           </Button>
         </Button.Group>
       </section>
@@ -56,39 +57,41 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
 
 function PortfolioCards({ projects }) {
   // extract the correct information needed to go in item.group of semantic UI (see sample below)
-  let items: SemanticShorthandCollection<ItemProps> = projects.map(
+  const items: SemanticShorthandCollection<ItemProps> = projects.map(
     (project: GusProject, index: number) => ({
       childKey: index,
       image: {
-        size: "medium",
+        size: 'medium',
         content: (
           <>
             <img
-              src={`./images/${project.img_src || "defaultimage01.jpg"}`}
+              src={`./images/${project.img_src || 'defaultimage01.jpg'}`}
               alt={`Screenshot of content from ${project.title}'s site`}
-            ></img>
+            />
             <div className={`${Styles.overlay} ${Styles.overlayBottom}`}>
               <a
                 href={project.app_url}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                {project.app_url.split("://")[1]}
+                {project.app_url.split('://')[1]}
               </a>
             </div>
           </>
         ),
         className: Styles.portfolioImage,
       },
-      header: project.title || "Project Title",
-      description: project.lead || "Project Description",
-      meta: project.technologies || "Tech Used",
-      extra: (
-        <ProjectsExtraContent
-          siteSrc={project.app_url}
-          repoSrc={project.repo_url} />
-      ) || "",
-    })
+      header: project.title || 'Project Title',
+      description: project.lead || 'Project Description',
+      meta: project.technologies || 'Tech Used',
+      extra:
+        (
+          <ProjectsExtraContent
+            siteSrc={project.app_url}
+            repoSrc={project.repo_url}
+          />
+        ) || '',
+    }),
   );
   /* 
     Item.Group's items =  Shorthand array of props for Item

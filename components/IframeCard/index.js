@@ -1,19 +1,19 @@
-import React from "react";
-import "./style.css";
+import React from 'react';
+import Styles from './IframeCard.module.css';
 // import IFrameContext from "../../utils/"
 
 // Exporting the Card Body, Card Image, and Card Overlay components from this file
 
-function IframeCard({ app_url }) {
+function IframeCard({ appUrl }) {
   return (
-    <div className="iframe-card">
+    <div className={Styles.iframeCard}>
       <iframe
         id="iframe Container"
         title="iframe"
         width="100%"
         height="100%"
-        src={app_url}
-      ></iframe>
+        src={appUrl}
+      />
     </div>
   );
 }

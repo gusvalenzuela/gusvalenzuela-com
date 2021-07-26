@@ -1,6 +1,6 @@
-import React from "react";
-import Styles from "./Foot.module.css";
-import { Icon } from "semantic-ui-react";
+import React from 'react';
+import { Icon } from 'semantic-ui-react';
+import Styles from './Foot.module.css';
 
 function Foot() {
   return (
@@ -46,19 +46,18 @@ function Foot() {
                 <Icon name="twitter" inverted size="big" />
               </a>
             </li>
-            <li></li>
           </ul>
         </div>
       </div>
 
       <div className={Styles.footerBottom}>
-        {" "}
+        {' '}
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Built with NEXT.js and ❤{" "}
+          Built with NEXT.js and ❤{' '}
         </a>
       </div>
     </footer>

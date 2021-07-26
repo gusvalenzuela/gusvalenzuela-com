@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Sidebar from "react-sidebar";
-import Nav from "../Nav";
-import SidebarToggle from "../SidebarToggle";
-import Store from "../../stores/global";
+import React, { useEffect, useState } from 'react';
+import Sidebar from 'react-sidebar';
+import Nav from '../Nav';
+import SidebarToggle from '../SidebarToggle';
+import Store from '../../stores/global';
 
 function MySidebar({ children }) {
   const viewportMin = window.matchMedia(`(min-width: 768px)`);
@@ -17,13 +17,13 @@ function MySidebar({ children }) {
     setScreen({
       width: window.innerWidth,
       height: window.innerHeight,
-      isSmallScreen: !viewportMin.matches ? true : false,
+      isSmallScreen: !viewportMin.matches,
     });
     setSideNavOpen(viewportMin.matches);
   };
 
   useEffect(() => {
-    window.addEventListener("resize", listener);
+    window.addEventListener('resize', listener);
   }, []);
 
   function handleOpeningSidebar() {
@@ -40,8 +40,8 @@ function MySidebar({ children }) {
       open={screen.isSmallScreen ? sideNavOpen : false}
       onSetOpen={handleOpeningSidebar}
       docked={screen.isSmallScreen ? false : sideNavOpen}
-      pullRight={true}
-      styles={{ sidebar: { background: "#eeeeee" } }}
+      pullRight
+      styles={{ sidebar: { background: '#eeeeee' } }}
     >
       {children}
       <SidebarToggle

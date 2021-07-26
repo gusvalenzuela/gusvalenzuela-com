@@ -1,7 +1,8 @@
-import React from "react";
-import ResumeModal from "../ResumeModal";
-import { List } from "semantic-ui-react";
-import Styles from "./ResumeCard.module.css";
+import React from 'react';
+import Link from 'next/link';
+import { List } from 'semantic-ui-react';
+import ResumeModal from '../ResumeModal';
+import Styles from './ResumeCard.module.css';
 
 function ResumeCard() {
   return (
@@ -9,14 +10,12 @@ function ResumeCard() {
       <h3>Want to reach me?</h3>
 
       <p>
-        Use{" "}
-        <a
-          alt="Contact page"
-          href="/contact/#contact-form"
-          className="text-link"
-        >
-          this form
-        </a>{" "}
+        Use{' '}
+        <Link href="/contact">
+          <a alt="Contact page" className="text-link">
+            this form
+          </a>
+        </Link>{' '}
         on my contact page or check out these other links:
       </p>
       <List divided relaxed="very">
