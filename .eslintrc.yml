@@ -16,8 +16,8 @@ extends:
   - plugin:import/errors
   - plugin:import/warnings
   - plugin:import/typescript # important bit for when using typescript
+  - next
   - prettier
-  - prettier/react
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaFeatures:
@@ -27,15 +27,6 @@ parserOptions:
 plugins:
   - import
   - react
-<<<<<<< HEAD
-  - '@typescript-eslint'
-rules: {
-    'import/prefer-default-export': 'off',
-    'no-param-reassign': 'off',
-    # 'no-nested-ternary': 'off',
-    'indent': ['error', 2],
-  }
-=======
   - '@typescript-eslint' # important bit for when using typescript
 settings:
   react:
@@ -43,16 +34,16 @@ settings:
 rules:
   no-plusplus:
     - error
-    - {allowForLoopAfterthoughts: true}
+    - { allowForLoopAfterthoughts: true }
   no-underscore-dangle:
     - warn
-    - {allow: ['_id']}
+    - { allow: ['_id'] }
   # no-param-reassign: off
   no-nested-ternary: off
   no-use-before-define: off
   import/extensions:
     - warn
-    - {json: always}
+    - { json: always }
   import/prefer-default-export: off
   jsx-a11y/anchor-is-valid:
     off
@@ -66,4 +57,3 @@ rules:
   react/jsx-props-no-spreading: off
   react/jsx-filename-extension: off
   react/prop-types: off
->>>>>>> e357914489718812b2a13b0910a86d124dc8f2f9
