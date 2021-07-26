@@ -15,14 +15,14 @@ module.exports = {
     },
     {
       title: "QuizDown\u2049",
-      version: "5.0.0",
+      version: "3.1.2",
       lead:
         "A timed quiz game with over 20 categories and 3 different difficulties to choose from. Try and answer all 10 questions as fast as you can to place your score on the 'High-Scores' list.",
       technologies: "JS, MongoDB, HTML, CSS",
       description: "",
-      app_url: "https://quiz-down.herokuapp.com",
-      repo_url: "https://github.com/gusvalenzuela/quiz-game",
-      repo_name: "quiz-game",
+      app_url: "https://quizdown.vercel.app",
+      repo_url: "https://github.com/gusvalenzuela/quizdown",
+      repo_name: "quizdown",
       img_src: "quizdown-2.png",
       img_alt: "Screenshot of application",
     },

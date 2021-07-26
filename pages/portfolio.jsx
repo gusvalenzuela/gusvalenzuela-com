@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 // import Moment from "react-moment";
-import Head from "next/head";
-import { Dimmer, Loader, Icon } from "semantic-ui-react";
-import API from "../utils/API";
-import PortfolioCards from "../components/PortfolioCards";
-import ResumeCard from "../components/ResumeCard";
-import MyHeader from "../components/Head";
-import LocalProjects from "../utils/seed";
-import Styles from "../styles/portfolio.module.css";
+import Head from 'next/head';
+import { Dimmer, Loader } from 'semantic-ui-react';
+import API from '../utils/API';
+import PortfolioCards from '../components/PortfolioCards';
+import ResumeCard from '../components/ResumeCard';
+import MyHeader from '../components/Head';
+import LocalProjects from '../utils/seed';
+import Styles from '../styles/portfolio.module.css';
 const KONAMI_LINK = process.env.NEXT_PUBLIC_KONAMI_LINK;
 
-function Portfolio({ projies }) {
-  const PortfolioVersion = 5; // change the version when changes to projectsDB are made so cache is updated
+function Portfolio() {
+  const PortfolioVersion = 6; // change the version when changes to projectsDB are made so cache is updated
 
   // Setting our component's initial state
   const [projects, setProjects] = useState([]);
   const [loadMessage, setLoadMessage] = useState(
-    "loading portfolio, shouldn't be long."
+    "loading portfolio, shouldn't be long.",
   );
 
   // "on  mounty"
@@ -40,11 +40,10 @@ function Portfolio({ projies }) {
       return i;
     });
 
-    return sanitizedProjects;
-    // localStorage.setItem(
-    //   `gusvalenzuela.com-cache-v${PortfolioVersion}-projects`,
-    //   JSON.stringify(sanitizedProjects)
-    // );
+    return localStorage.setItem(
+      `gusvalenzuela.com-cache-v${PortfolioVersion}-projects`,
+      JSON.stringify(sanitizedProjects),
+    );
   }
   function clearOldProjectsCache() {
     for (let i = 0; i < PortfolioVersion; i++) {
@@ -53,11 +52,11 @@ function Portfolio({ projies }) {
   }
   function changeLoadingMsg() {
     setTimeout(() => {
-      setLoadMessage("loading portfolio, any second now...");
+      setLoadMessage('loading portfolio, any second now...');
     }, 10000); // 10 sec
     setTimeout(() => {
       setLoadMessage(
-        "How embarrassing, it shouldn't be taking this long. Something's wrong."
+        "How embarrassing, it shouldn't be taking this long. Something's wrong.",
       );
     }, 60000); // 60 sec
   }
@@ -66,8 +65,8 @@ function Portfolio({ projies }) {
     //checking to see if a local projects obj exists, and using that
     const localStorageProjects = JSON.parse(
       localStorage.getItem(
-        `gusvalenzuela.com-cache-projects-v${PortfolioVersion}`
-      )
+        `gusvalenzuela.com-cache-projects-v${PortfolioVersion}`,
+      ),
     );
 
     if (localStorageProjects && localStorageProjects.length > 0) {
@@ -109,22 +108,22 @@ function Portfolio({ projies }) {
   var KonamiCode = [];
 
   useEffect(() => {
-    if (KC === "KC") {
+    if (KC === 'KC') {
       // winner, winner
       // do this
       window.location.href = KONAMI_LINK;
     }
     if (KC !== null) {
       // Add event listeners
-      window.addEventListener("keyup", (evt) => {
+      window.addEventListener('keyup', (evt) => {
         KonamiCode.push(evt.code.trim());
         if (KonamiCode.length === 10) {
           console.log(KonamiCode.join(``), KonamiCode.length);
           if (
             KonamiCode.join(``).toString() ===
-            "ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightKeyBKeyA"
+            'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightKeyBKeyA'
           ) {
-            setKC("KC");
+            setKC('KC');
           }
         } else if (KonamiCode.length > 10) {
           KonamiCode = [];
@@ -132,7 +131,7 @@ function Portfolio({ projies }) {
       });
       // Remove event listeners on cleanup
       return () => {
-        window.removeEventListener("keyup", (evt) => {
+        window.removeEventListener('keyup', (evt) => {
           console.log(evt.code);
         });
       };
@@ -152,7 +151,7 @@ function Portfolio({ projies }) {
       <main
         onClick={() => {
           KonamiCode = [];
-          setKC("run");
+          setKC('run');
         }}
         role="main"
         className={Styles.portfolio}
