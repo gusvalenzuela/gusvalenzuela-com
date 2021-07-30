@@ -11,11 +11,6 @@ function Nav() {
             <a className={Styles.navbarLinks}> home,</a>
           </Link>
         </li>
-        {/* <li>
-          <Link href="/about">
-            <a className={Styles.navbarLinks}> about,</a>
-          </Link>
-        </li> */}
         <li>
           <Link href="/portfolio">
             <a className={Styles.navbarLinks}> portfolio,</a>
@@ -23,7 +18,12 @@ function Nav() {
         </li>
         <li>
           <Link href="/contact">
-            <a className={Styles.navbarLinks}> contact.</a>
+            <a className={Styles.navbarLinks}> contact,</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/video">
+            <a className={Styles.navbarLinks}> video.</a>
           </Link>
         </li>
       </ul>

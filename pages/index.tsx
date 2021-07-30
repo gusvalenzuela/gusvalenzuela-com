@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Segment } from 'semantic-ui-react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import MyHeader from '../components/Head';
 import About from '../components/About';
 import Parallax from '../components/Parallax';
@@ -126,13 +127,23 @@ const Homepage = () => {
           <YouTubePlayer videoId="tx2ci54WZJ0" />
           <br />
           <h3>
+            See more on my{' '}
+            <Link href="/video">
+              <a
+                style={{ textDecoration: 'underline' }}
+                className={Styles.navbarLinks}
+              >
+                video page
+              </a>
+            </Link>{' '}
+            or{' '}
             <a
               href="https://www.youtube.com/channel/UCVLkTnKT6LAdpFWKyHIfm5w"
               rel="noopener noreferrer"
               target="_blank"
               style={{ textDecoration: 'underline' }}
             >
-              See more on my YouTube channel
+              on my YouTube channel
             </a>
           </h3>
         </div>
