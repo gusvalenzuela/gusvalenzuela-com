@@ -4,7 +4,7 @@ import { Modal, Dimmer, Loader } from 'semantic-ui-react';
 const ResumeModal = ({ Button }) => {
   const [loading, setLoading] = useState(true);
   return (
-    <Modal size="fullscreen" trigger={Button} closeIcon centered>
+    <Modal style={{ height: '95%' }} trigger={Button} closeIcon centered>
       <Modal.Header>Resume</Modal.Header>
       <Modal.Content
         onLoad={() => {
@@ -14,15 +14,17 @@ const ResumeModal = ({ Button }) => {
         className="resume-modal-iframe"
         src="https://drive.google.com/file/d/1iUYuisPQVyiCGgcuz1awe31KP16D7bI9/preview"
         width="100%"
-        height="95%"
-        style={{ display: `${loading ? 'none' : ''}` }}
+        height="90%"
+        style={{
+          display: `${loading ? 'none' : ''}`,
+        }}
         title="Gustavo Valenzuela Resume"
-        allowFullScreen
+        // allowFullScreen
       />
 
       {loading ? (
         <Dimmer active>
-          <Loader size="large">Loading</Loader>
+          <Loader size="large">Fetching latest resume...</Loader>
         </Dimmer>
       ) : (
         ''
