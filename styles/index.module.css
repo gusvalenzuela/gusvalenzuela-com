@@ -20,25 +20,31 @@
 .quotebox {
   margin: 0;
   width: 100%;
-  padding: 5.063rem 3.375rem;
 }
 .introParaRow {
   background: var(--color3);
   min-height: 22vh;
+}
+.skillsbox,
+.quotebox,
+.introParaRow {
   padding: 5.063rem 3.375rem;
 }
 .buttonsContainer {
   background-color: var(--color4);
   margin: auto;
-  max-width: 600px;
   padding: 2.25rem;
 }
 
 .skillsbox {
   margin: auto;
   /* background: #fff; */
-  max-width: 600px;
   text-align: left;
+}
+.buttonsContainer,
+.skillsbox,
+.videoPlayerBox {
+  max-width: 600px;
 }
 
 .quotebox > div {
@@ -215,9 +221,16 @@
   display: inline-block;
 }
 
+.videoPlayerBox {
+  margin: auto;
+  text-align: center;
+  padding: 2.25rem 1.5rem;
+}
+
 /* small screens  */
 @media screen and (max-width: 576px) {
-  .contactForm {
+  .contactForm,
+  .videoPlayerBox {
     width: 90%;
   }
   .topBarCustom {
@@ -238,9 +251,8 @@
   .profilePhoto {
     max-width: 250px;
   }
-  .contactForm {
-    width: 800px;
-  }
+  .contactForm,
+  .videoPlayerBox,
   #about-me {
     max-width: 800px;
   }

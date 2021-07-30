@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 import { Segment } from 'semantic-ui-react';
 import Head from 'next/head';
+import Image from 'next/image';
 import MyHeader from '../components/Head';
 import About from '../components/About';
 import Parallax from '../components/Parallax';
 import ContactForm from '../components/ContactForm';
+import YouTubePlayer from '../components/YouTubePlayer';
+import EllisonAvatar from '../public/images/ellison-avatar.jpg';
 import Styles from '../styles/index.module.css';
 import 'lazysizes';
 
@@ -105,17 +108,33 @@ const Homepage = () => {
           <div>
             <Segment vertical>
               <b>FRONT END</b>: HTML5, CSS3, Bootstrap, React, Semantic-UI,
-              NextJS, Svelte
+              NextJS, Svelte, Handlebars
             </Segment>
             <Segment vertical>
               <b>BACK END</b>: Node, MySQL, MongoDB, Express, Mongoose,
               Sequelize
             </Segment>
             <Segment vertical>
-              <b>OTHER</b>: JavaScript, Git, SQL, JSON, GitHub, MVC, AJAX,
-              Handlebars, jQuery, REST, APIs, UI, OAuth2
+              <b>OTHER</b>: JavaScript, TypeScript, Git, GitHub, JSON, MVC, REST
+              APIs, UI/UX, Webpack, ESLint, Prettier, Excel, Word, Outlook,
+              Windows, Linux, Raspberry Pi, and more.
             </Segment>
           </div>
+        </div>
+        <div className={Styles.videoPlayerBox}>
+          <h2>Video Editing</h2>
+          <YouTubePlayer videoId="tx2ci54WZJ0" />
+          <br />
+          <h3>
+            <a
+              href="https://www.youtube.com/channel/UCVLkTnKT6LAdpFWKyHIfm5w"
+              rel="noopener noreferrer"
+              target="_blank"
+              style={{ textDecoration: 'underline' }}
+            >
+              See more on my YouTube channel
+            </a>
+          </h3>
         </div>
         <div className={Styles.contactContainer}>
           <ContactForm />
@@ -132,10 +151,10 @@ const Homepage = () => {
               </p>
             </Segment>
             <div className={Styles.indexQuoteblockVerticalPerson}>
-              <img
+              <Image
                 className={Styles.indexQuoteblockVerticalAvatar}
                 // data-src="/images/ellison-avatar.jpg"
-                src="/images/ellison-avatar.jpg"
+                src={EllisonAvatar}
                 alt=""
               />
               <div>
