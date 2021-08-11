@@ -41,11 +41,6 @@ const Homepage = () => {
     <>
       <Head>
         <title>grv.Home</title>
-        {/* custom google fonts for header and others on index page */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lobster&amp;family=Montserrat&amp;family=Open+Sans&amp;family=Poiret+One&amp;family=Roboto&amp;family=Special+Elite&amp;display=swap"
-          rel="stylesheet"
-        />
         <meta
           name="description"
           content="Gus Valenzuela's personal website displaying different web development skills and various links to other pages on the site."
