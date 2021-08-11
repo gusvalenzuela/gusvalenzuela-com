@@ -7,6 +7,8 @@ import Store from '../../stores/global';
 
 function MySidebar({ children }) {
   const viewportMin = window.matchMedia(`(min-width: 768px)`);
+  const elementRef = React.useRef();
+  // const mainState = useState(elementRef);
   const [sideNavOpen, setSideNavOpen] = useState(viewportMin.matches);
   const [screen, setScreen] = useState({
     width: window.innerWidth,
@@ -15,8 +17,25 @@ function MySidebar({ children }) {
   });
 
   useEffect(() => {
-    const rootElement = [...document.getElementsByTagName('main')][0]
-      .parentElement;
+    const resizeListener = () => {
+      Store.setState({ windowWidth: window.innerWidth });
+      setScreen({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        isSmallScreen: !viewportMin.matches,
+      });
+      setSideNavOpen(viewportMin.matches);
+      return window.removeEventListener('resize', resizeListener);
+    };
+
+    window.addEventListener('resize', resizeListener);
+  }, [viewportMin]);
+
+  useEffect(() => {
+    elementRef.current = [...document.getElementsByTagName('main')];
+    if (!elementRef.current.length) return null;
+    const rootElement = elementRef.current[0]?.parentElement;
+
     //  Get the sticky buttons menu
     const stickyMenu = document.getElementById('fixed-bottom-menu');
     const goToTopFunction = () => {
@@ -29,22 +48,12 @@ function MySidebar({ children }) {
       stickyMenu.style.display = rootElement.scrollTop > 234 ? 'block' : 'none';
       return null;
     };
-    const resizeListener = () => {
-      Store.setState({ windowWidth: window.innerWidth });
-      setScreen({
-        width: window.innerWidth,
-        height: window.innerHeight,
-        isSmallScreen: !viewportMin.matches,
-      });
-      setSideNavOpen(viewportMin.matches);
-      return window.removeEventListener('resize', resizeListener);
-    };
-
     // attach listener function to elements
     rootElement.onscroll = scrollFunction;
     stickyMenu.onclick = goToTopFunction;
-    window.addEventListener('resize', resizeListener);
-  }, [viewportMin]);
+
+    return null;
+  }, [elementRef]);
 
   return (
     <Sidebar
