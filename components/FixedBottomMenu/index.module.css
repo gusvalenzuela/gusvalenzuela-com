@@ -2,8 +2,8 @@
   text-align: center;
   display: none; /* Hidden by default */
   position: fixed; /* Fixed/sticky position */
-  bottom: 30px; /* Place the menu at the bottom of the page */
-  right: 30px; /* Place the menu 30px from the right */
+  bottom: 14vh; /* Place the menu at the bottom of the page */
+  right: 7vh; /* Place the menu 7vh from the right */
   z-index: 199; /* Make sure it does not overlap */
   max-width: 50px;
   border: none; /* Remove borders */
