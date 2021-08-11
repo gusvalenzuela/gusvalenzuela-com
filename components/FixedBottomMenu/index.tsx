@@ -8,8 +8,8 @@ const FixedBottomMenu = () => (
     id="fixed-bottom-menu"
     className={Styles.fixedBottomMenu}
   >
-    <span role="img" aria-label="Finger pointing up">
-      👆
+    <span role="img" aria-label="Arrow pointing up with text reading 'Top'">
+      🔝
     </span>
   </button>
 );
