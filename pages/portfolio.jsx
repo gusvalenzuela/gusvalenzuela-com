@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect } from 'react';
-// import Moment from "react-moment";
 import Head from 'next/head';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import API from '../utils/API';
