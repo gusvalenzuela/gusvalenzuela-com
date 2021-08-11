@@ -64,9 +64,19 @@ const ContactForm = () => {
 
       API.sendContactEmail(emailData).then((res) => {
         if (res.status === 200) {
-          setEmailData({ ...emailData, success: true, btnMsg: 'Sent' });
+          setEmailData({
+            ...emailData,
+            success: true,
+            btnMsg: 'Sent',
+            sending: false,
+          });
         } else {
-          setEmailData({ ...emailData, success: false, btnMsg: 'Fail' });
+          setEmailData({
+            ...emailData,
+            success: false,
+            btnMsg: 'Fail',
+            sending: false,
+          });
         }
 
         // after 7 secs, form data and message/toast is cleared
