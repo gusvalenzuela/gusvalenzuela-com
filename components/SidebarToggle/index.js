@@ -8,8 +8,8 @@ function SidebarToggle({ isOpen, handleOpeningSidebar, smallScreen }) {
       aria-label="Toggle Sidebar"
       className={`${Styles.sidebarToggle} ${
         !isOpen ? Styles.sidebarClosed : Styles.sidebarOpened
-      } ${smallScreen && Styles.smallScreen}`}
-      onClick={() => handleOpeningSidebar()}
+      } ${smallScreen ? Styles.smallScreen : ''}`}
+      onClick={handleOpeningSidebar}
     />
   );
 }

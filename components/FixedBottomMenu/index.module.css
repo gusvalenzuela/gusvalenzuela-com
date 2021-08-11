@@ -1,0 +1,30 @@
+.fixedBottomMenu {
+  text-align: center;
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 30px; /* Place the menu at the bottom of the page */
+  right: 30px; /* Place the menu 30px from the right */
+  z-index: 199; /* Make sure it does not overlap */
+  max-width: 50px;
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: rgba(175, 175, 175, 0.5); /* Set a background color */
+  color: var(--main-black, black); /* Text color */
+  padding: 6px; /* Some padding */
+  border-radius: 6px; /* Rounded corners */
+  font-size: 1.25rem; /* Increase font size */
+  cursor: pointer; /* Add a mouse pointer on hover */
+}
+
+/* .backToTop,
+.menuToggle {
+} */
+
+.fixedBottomMenu:hover {
+  background-color: rgba(
+    175,
+    175,
+    175,
+    1
+  ); /* Add a dark-grey background on hover */
+}

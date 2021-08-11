@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from 'react-sidebar';
 import Nav from '../Nav';
 import SidebarToggle from '../SidebarToggle';
+import FixedBottomMenu from '../FixedBottomMenu';
 import Store from '../../stores/global';
 
 function MySidebar({ children }) {
@@ -12,33 +13,44 @@ function MySidebar({ children }) {
     height: window.innerHeight,
     isSmallScreen: undefined,
   });
-  const listener = () => {
-    Store.setState({ windowWidth: window.innerWidth });
-    setScreen({
-      width: window.innerWidth,
-      height: window.innerHeight,
-      isSmallScreen: !viewportMin.matches,
-    });
-    setSideNavOpen(viewportMin.matches);
-  };
 
   useEffect(() => {
-    window.addEventListener('resize', listener);
-  }, []);
+    const rootElement = [...document.getElementsByTagName('main')][0]
+      .parentElement;
+    //  Get the sticky buttons menu
+    const stickyMenu = document.getElementById('fixed-bottom-menu');
+    const goToTopFunction = () => {
+      rootElement.scrollTop = 0;
+      return null;
+    };
 
-  function handleOpeningSidebar() {
-    if (!sideNavOpen) {
-      setSideNavOpen(true);
-    } else {
-      setSideNavOpen(false);
-    }
-  }
+    const scrollFunction = () => {
+      // When the user scrolls down 234px from the top of the document, show the menu
+      stickyMenu.style.display = rootElement.scrollTop > 234 ? 'block' : 'none';
+      return null;
+    };
+    const resizeListener = () => {
+      Store.setState({ windowWidth: window.innerWidth });
+      setScreen({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        isSmallScreen: !viewportMin.matches,
+      });
+      setSideNavOpen(viewportMin.matches);
+      return window.removeEventListener('resize', resizeListener);
+    };
+
+    // attach listener function to elements
+    rootElement.onscroll = scrollFunction;
+    stickyMenu.onclick = goToTopFunction;
+    window.addEventListener('resize', resizeListener);
+  }, [viewportMin]);
 
   return (
     <Sidebar
       sidebar={<Nav />}
       open={screen.isSmallScreen ? sideNavOpen : false}
-      onSetOpen={handleOpeningSidebar}
+      onSetOpen={() => setSideNavOpen(!sideNavOpen)}
       docked={screen.isSmallScreen ? false : sideNavOpen}
       pullRight
       styles={{ sidebar: { background: '#eeeeee' } }}
@@ -47,8 +59,9 @@ function MySidebar({ children }) {
       <SidebarToggle
         isOpen={sideNavOpen}
         smallScreen={screen.isSmallScreen}
-        handleOpeningSidebar={() => handleOpeningSidebar()}
+        handleOpeningSidebar={() => setSideNavOpen(!sideNavOpen)}
       />
+      <FixedBottomMenu />
     </Sidebar>
   );
 }
