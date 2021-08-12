@@ -32,10 +32,18 @@ function MySidebar({ children }) {
   }, [viewportMin]);
 
   useEffect(() => {
+    // set the ref as the 'main' element
     elementRef.current = [...document.getElementsByTagName('main')];
-    if (!elementRef.current.length) return null;
+    // return out if no element(s) found
+    if (!elementRef.current.length) {
+      elementRef.current = null;
+      return elementRef;
+    }
+    // Get the parent element of the main content element
+    // this is the "sidebar" component that is scrollable
     const rootElement = elementRef.current[0]?.parentElement;
 
+    if (!rootElement) return null;
     //  Get the sticky buttons menu
     const stickyMenu = document.getElementById('fixed-bottom-menu');
     const goToTopFunction = () => {
@@ -44,15 +52,19 @@ function MySidebar({ children }) {
     };
 
     const scrollFunction = () => {
-      // When the user scrolls down 234px from the top of the document, show the menu
-      stickyMenu.style.display = rootElement.scrollTop > 234 ? 'block' : 'none';
+      // When the user scrolls down 300px from the top of the document, show the menu
+      stickyMenu.style.display = rootElement.scrollTop > 300 ? 'block' : 'none';
       return null;
     };
     // attach listener function to elements
     rootElement.onscroll = scrollFunction;
     stickyMenu.onclick = goToTopFunction;
 
-    return null;
+    return () => {
+      elementRef.current = null;
+      rootElement.removeEventListener('scroll', scrollFunction);
+      stickyMenu.removeEventListener('click', goToTopFunction);
+    };
   }, [elementRef]);
 
   return (

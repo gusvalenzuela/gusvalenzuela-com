@@ -112,8 +112,7 @@ function Portfolio() {
     }
     if (KC !== null) {
       let KonamiCode = [];
-      // Add event listeners
-      window.addEventListener('keyup', (evt) => {
+      const keyUpListener = (evt) => {
         KonamiCode.push(evt.code.trim());
         if (KonamiCode.length === 10) {
           if (
@@ -125,18 +124,18 @@ function Portfolio() {
         } else if (KonamiCode.length > 10) {
           KonamiCode = [];
         }
-      });
+      };
+      // Add event listeners
+      window.addEventListener('keyup', keyUpListener);
       // Remove event listeners on cleanup
       return () => {
-        window.removeEventListener('keyup', (evt) => {
-          console.log(evt.code);
-        });
+        window.removeEventListener('keyup', keyUpListener);
       };
     }
     return () => {};
   }, [KC]);
 
-  return projects.length ? (
+  return (
     <>
       <Head>
         <title>grv.Portfolio</title>
@@ -151,18 +150,20 @@ function Portfolio() {
         role="main"
         className={Styles.portfolio}
       >
-        <div className={Styles.portfolioContainer}>
-          <PortfolioCards projects={projects} />
-          <ResumeCard />
-        </div>
+        {projects.length ? (
+          <div className={Styles.portfolioContainer}>
+            <PortfolioCards projects={projects} />
+            <ResumeCard />
+          </div>
+        ) : (
+          <Dimmer role="dialog" active>
+            <Loader indeterminate inline="centered" size="large">
+              {loadMessage}
+            </Loader>
+          </Dimmer>
+        )}
       </main>
     </>
-  ) : (
-    <Dimmer role="dialog" active>
-      <Loader indeterminate inline="centered" size="large">
-        {loadMessage}
-      </Loader>
-    </Dimmer>
   );
 }
 
