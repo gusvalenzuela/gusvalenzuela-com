@@ -2,7 +2,6 @@ import React from 'react';
 import { Item, Icon, Button, ItemProps } from 'semantic-ui-react';
 import type { SemanticShorthandCollection } from 'semantic-ui-react/dist/commonjs/generic';
 import type { GusProject } from '../../generic';
-import Styles from './PortfolioCards.module.css';
 import 'lazysizes';
 
 function ProjectsExtraContent({ siteSrc, repoSrc }) {
@@ -29,7 +28,7 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
             target="_blank"
             animated="fade"
           >
-            <Button.Content visible>OPEN SITE</Button.Content>
+            <Button.Content visible>VISIT</Button.Content>
             <Button.Content hidden>
               <Icon name="long arrow alternate right" />
             </Button.Content>
@@ -58,28 +57,30 @@ function ProjectsExtraContent({ siteSrc, repoSrc }) {
 function PortfolioCards({ projects }) {
   // extract the correct information needed to go in item.group of semantic UI (see sample below)
   const items: SemanticShorthandCollection<ItemProps> = projects.map(
-    (project: GusProject, index: number) => ({
-      childKey: index,
+    (project: GusProject) => ({
+      childKey: project.title,
       image: {
-        size: 'medium',
-        content: (
-          <>
-            <img
-              src={`./images/${project.img_src || 'defaultimage01.jpg'}`}
-              alt={`Screenshot of content from ${project.title}'s site`}
-            />
-            <div className={`${Styles.overlay} ${Styles.overlayBottom}`}>
-              <a
-                href={project.app_url}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {project.app_url.split('://')[1]}
-              </a>
-            </div>
-          </>
-        ),
-        className: Styles.portfolioImage,
+        size: 'tiny',
+        src: `./images/${project.img_src || 'defaultimage01.jpg'}`,
+        // content: (
+        //   <>
+        //     <Image
+
+        //       layout="fill"
+        //       alt={`Screenshot of content from ${project.title}'s site`}
+        //     />
+        //     <div className={`${Styles.overlay} ${Styles.overlayBottom}`}>
+        //       <a
+        //         href={project.app_url}
+        //         rel="noopener noreferrer"
+        //         target="_blank"
+        //       >
+        //         {project.app_url.split('://')[1]}
+        //       </a>
+        //     </div>
+        //   </>
+        // ),
+        // className: Styles.portfolioImage,
       },
       header: project.title || 'Project Title',
       description: project.lead || 'Project Description',
@@ -105,7 +106,7 @@ function PortfolioCards({ projects }) {
         extra: 'Extra',
     },
   */
-  return <Item.Group divided relaxed="very" items={items} />;
+  return <Item.Group divided items={items} />;
 }
 
 export default PortfolioCards;

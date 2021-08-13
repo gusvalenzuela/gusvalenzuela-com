@@ -18,8 +18,8 @@ $color5: #e4c5afff;
 */
 
 :root {
-  --header-font: "Special Elite", cursive;
-  --text-font: "Roboto", sans-serif;
+  --header-font: 'Special Elite', cursive;
+  --text-font: 'Roboto', sans-serif;
   --color-white: #f7f7f7;
   --color1: #050517ff;
   --color2: #92140cff;
@@ -63,22 +63,22 @@ a {
 main {
   /* height subtracts header (~169px) and footer (~140px) */
   min-height: calc(100vh - 300px);
+  background: var(--color-white) !important;
+  /* background: var(--color5) !important; */
+  /* color: #ffffff !important; */
 }
 
-div[role="navigation"] {
+div[role='navigation'] {
   background: var(--color-white);
   color: #030303;
   margin: 0;
 }
-div[role="dialog"] {
+div[role='dialog'] {
   background: var(--main-black) !important;
   height: 100% !important;
 }
-div[role="main"] {
-  background: var(--color-white) !important;
-  color: #ffffff !important;
-}
-div[role="list"] {
+
+div[role='list'] {
   padding: 1rem 0 !important;
 }
 
