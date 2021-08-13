@@ -16,7 +16,7 @@ extends:
   - plugin:import/errors
   - plugin:import/warnings
   - plugin:import/typescript # important bit for when using typescript
-  # - next
+  - next
   - prettier
 parser: '@typescript-eslint/parser'
 parserOptions:
