@@ -7,8 +7,8 @@ import Store from '../../stores/global';
 
 function MySidebar({ children }) {
   const viewportMin = window.matchMedia(`(min-width: 768px)`);
-  const elementRef = React.useRef();
-  // const mainState = useState(elementRef);
+  const mainElementRef = React.useRef(undefined);
+  // const mainState = useState(mainElementRef);
   const [sideNavOpen, setSideNavOpen] = useState(viewportMin.matches);
   const [screen, setScreen] = useState({
     width: window.innerWidth,
@@ -33,23 +33,21 @@ function MySidebar({ children }) {
 
   useEffect(() => {
     // set the ref as the 'main' element
-    elementRef.current = [...document.getElementsByTagName('main')];
+    mainElementRef.current = [...document.getElementsByTagName('main')];
     // return out if no element(s) found
-    if (!elementRef.current.length) {
-      elementRef.current = null;
-      return elementRef;
+    if (!mainElementRef.current.length) {
+      mainElementRef.current = null;
+      return mainElementRef;
     }
     // Get the parent element of the main content element
     // this is the "sidebar" component that is scrollable
-    const rootElement = elementRef.current[0]?.parentElement;
+    const rootElement = mainElementRef.current[0]?.parentElement;
 
     if (!rootElement) return null;
     //  Get the sticky buttons menu
     const stickyMenu = document.getElementById('fixed-bottom-menu');
-    const goToTopFunction = () => {
-      rootElement.scrollTop = 0;
-      return null;
-    };
+    const goToTopFunction = () =>
+      rootElement.scrollTo({ top: 0, behavior: 'smooth' });
 
     const scrollFunction = () => {
       // When the user scrolls down 300px from the top of the document, show the menu
@@ -61,11 +59,11 @@ function MySidebar({ children }) {
     stickyMenu.onclick = goToTopFunction;
 
     return () => {
-      elementRef.current = null;
+      mainElementRef.current = null;
       rootElement.removeEventListener('scroll', scrollFunction);
       stickyMenu.removeEventListener('click', goToTopFunction);
     };
-  }, [elementRef]);
+  }, [mainElementRef]);
 
   return (
     <Sidebar
