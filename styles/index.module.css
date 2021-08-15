@@ -15,7 +15,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
-
+.parallaxContainer {
+  height: 100vh;
+}
 .skillsbox,
 .quotebox {
   margin: 0;
@@ -184,7 +186,7 @@
   margin-right: 0.5rem !important ;
   margin-bottom: 1.5rem !important;
   border: none !important;
-  background: var(--color4) !important;
+  background: var(--color2) !important;
   /* width: 80%; */
 }
 .indexQuoteblockVerticalQuote p {
@@ -200,7 +202,7 @@
   height: 0px;
   border-style: solid;
   border-width: 1.25rem 1.125rem 0 1.125rem;
-  border-color: var(--color4) transparent transparent transparent;
+  border-color: var(--color2) transparent transparent transparent;
   position: absolute;
 }
 .indexQuoteblockVerticalName {

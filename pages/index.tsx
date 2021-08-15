@@ -49,7 +49,9 @@ const Homepage = () => {
       <MyHeader textContent="HOME" />
       <main className={Styles.homepageContainer} id="homepage-container">
         {/* P A R A L L A X */}
-        <Parallax backgroundImg={NASAImage} foregroundImg={{}} middleImg={{}} />
+        <div className={Styles.parallaxContainer}>
+          <Parallax backgroundImg={NASAImage} foregroundImg={{}} />
+        </div>
         <div className={Styles.nasaImageContent}>
           <h2>{NASAImage.title}</h2>
           <h5>
@@ -117,31 +119,39 @@ const Homepage = () => {
             </Segment>
           </div>
         </div>
-        <div className={Styles.videoPlayerBox}>
-          <h2>Video Editing</h2>
-          <YouTubePlayer videoId="tx2ci54WZJ0" />
-          <br />
-          <h3>
-            See more on my{' '}
-            <Link href="/video">
+        <section
+          style={{
+            margin: 0,
+            padding: 0,
+            backgroundColor: 'var(--color3)',
+          }}
+        >
+          <div className={Styles.videoPlayerBox}>
+            <h2>Video Editing</h2>
+            <YouTubePlayer videoId="tx2ci54WZJ0" />
+            <br />
+            <h3>
+              See more on my{' '}
+              <Link href="/video">
+                <a
+                  style={{ textDecoration: 'underline' }}
+                  className={Styles.navbarLinks}
+                >
+                  video page
+                </a>
+              </Link>{' '}
+              or on my{' '}
               <a
+                href="https://www.youtube.com/channel/UCVLkTnKT6LAdpFWKyHIfm5w"
+                rel="noopener noreferrer"
+                target="_blank"
                 style={{ textDecoration: 'underline' }}
-                className={Styles.navbarLinks}
               >
-                video page
+                YouTube channel
               </a>
-            </Link>{' '}
-            or{' '}
-            <a
-              href="https://www.youtube.com/channel/UCVLkTnKT6LAdpFWKyHIfm5w"
-              rel="noopener noreferrer"
-              target="_blank"
-              style={{ textDecoration: 'underline' }}
-            >
-              on my YouTube channel
-            </a>
-          </h3>
-        </div>
+            </h3>
+          </div>
+        </section>
         <div className={Styles.contactContainer}>
           <ContactForm />
         </div>
