@@ -77,11 +77,10 @@ function Portfolio() {
         // looping through all repos' git data
         repos.data.forEach((item: any) => {
           // adding last updated date to each of projects in state
-          Projects.forEach((proj) => {
-            if (proj.repo_name === item.name) {
-              proj.updated_at = item.updated_at;
-            }
-          });
+          Projects.map((proj) => ({
+            ...proj,
+            updated_at: proj.repo_name === item.name ? item.updated_at : null,
+          }));
         });
         // set projects to local or pulled Projects after updating with git data
         setProjects(Projects);
@@ -134,9 +133,9 @@ function Portfolio() {
 
   // KONAMI CODE
   const [KC, setKC] = useState('');
-  let KonamiCode: string[] = [];
 
   useEffect((): any => {
+    let KonamiCode: string[] = [];
     if (KC === 'KC') {
       // winner, winner
       // do this
@@ -167,7 +166,7 @@ function Portfolio() {
     }
 
     return cleanup;
-  }, [KC, KonamiCode]);
+  }, [KC]);
 
   return projects.length ? (
     <>
@@ -181,7 +180,6 @@ function Portfolio() {
       {/* <MyHeader textContent="PORTFOLIO" /> */}
       <main
         onClick={() => {
-          KonamiCode = [];
           setKC('run');
         }}
         role="main"
