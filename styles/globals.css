@@ -21,6 +21,7 @@ $color5: #e4c5afff;
   --header-font: 'Special Elite', cursive;
   --text-font: 'Roboto', sans-serif;
   --color-white: #f7f7f7;
+  --color-gray: #7f7f7f;
   --color1: #ff847c;
   --color2: #fecea8;
   --color3: #99b898;
@@ -55,7 +56,7 @@ a {
 /* container holding main, footer, and  header */
 .grid-root {
   display: grid;
-  height: 100vh !important;
+  /* height: 100vh !important; */
   /* grid-template-rows: auto 1fr auto !important; */
   /* min-height: 100%; */
 }
@@ -81,7 +82,16 @@ div[role='dialog'] {
 div[role='list'] {
   padding: 1rem 0 !important;
 }
-
+a.active{
+  color: var(--main-red);
+}
+a.active:hover{
+  color: var(--main-red);
+  opacity: .5;
+  text-decoration: none;
+  pointer-events: none;
+  display: inline-block;
+}
 /*
 Various css properties persistent throughtout the app
 shown as non-camelCase
@@ -90,4 +100,9 @@ shown as non-camelCase
 .text-link {
   color: #4183c4 !important;
   font-weight: 600 !important;
+}
+/* nav hover effect */
+#topNavMenu a:not(.active):hover{
+  text-decoration: none;
+  color: var(--color-white);
 }
