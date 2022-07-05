@@ -1,8 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import MyHeader from '../components/Head';
 import Styles from '../styles/aboutme.module.css';
+import ProfilePhoto from '../public/images/profilephoto3.jpg';
 import 'lazysizes';
 
 const AboutPage = () => (
@@ -15,11 +17,11 @@ const AboutPage = () => (
       <div className={Styles.introParaRow}>
         <div id="about-me">
           <header className={Styles.welcomeHeader}>Welcome to my site.</header>
-          <img
-            // data-src="/images/profilephoto3.jpg"
-            src="/images/profilephoto3.jpg"
-            alt="Headshot of myself (gus)"
+          <Image
             className={Styles.profilePhoto}
+            // data-src="/images/ellison-avatar.jpg"
+            src={ProfilePhoto}
+            alt="Headshot of myself (gus)"
           />
           <p>
             Since an adolescent, I have been fascinated with technology,
