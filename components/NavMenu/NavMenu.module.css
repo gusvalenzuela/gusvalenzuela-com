@@ -1,0 +1,48 @@
+.navbarNav {
+  margin: auto ;
+  list-style: none;
+  padding-left: 0;
+}
+
+.topNavMenu {
+  background: transparent;
+  width: 100%;
+  margin: auto;
+  /* height: 100%; */
+  z-index: 999;
+  padding: 1.25rem;
+  text-align: center;
+}
+.topNavMenu span {
+  padding: 0.25rem;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+a.navMenuLinks {
+  
+  color: var(--color-gray);
+}
+
+span.navDivider,
+span.brandName {
+  margin: 0.5rem 0;
+  text-shadow: 1px 1px 0px var(--color-white);
+}
+.topNavMenu .navDivider {
+  color: #ffffff;
+}
+.topNavMenu .navDivider::after{
+  content: "|";
+}
+.brandName {
+  color: var(--main-black);
+
+}
+/* 
+@media screen and (max-width: 576px){
+  .topNavMenu {
+    width: 150px;
+  }
+} */
