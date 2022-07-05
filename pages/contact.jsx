@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import {Button} from 'semantic-ui-react';
 import ContactForm from '../components/ContactForm';
-import MyHeader from '../components/Head';
+// import MyHeader from '../components/Head';
 
 function Contact() {
   return (
@@ -10,7 +10,7 @@ function Contact() {
       <Head>
         <title>grv.Contact</title>
       </Head>
-      <MyHeader textContent="CONTACT" />
+      {/* <MyHeader textContent="CONTACT" /> */}
       <style jsx>
         {`
           .contactContainer {

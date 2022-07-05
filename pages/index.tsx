@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
-import { Segment } from 'semantic-ui-react';
+import React, {useState} from 'react';
+import {Segment} from 'semantic-ui-react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import MyHeader from '../components/Head';
+// import MyHeader from '../components/Head';
 import About from '../components/About';
 import Parallax from '../components/Parallax';
 import ContactForm from '../components/ContactForm';
@@ -15,7 +15,7 @@ import 'lazysizes';
 
 const APODQ = process.env.NEXT_PUBLIC_APODQ;
 
-const Homepage = () => {
+function Homepage() {
   const [NASAImage, setNASAImage]: any = useState({});
   const [imageRefreshing, setImageRefreshing] = useState(false);
 
@@ -46,7 +46,7 @@ const Homepage = () => {
           content="Gus Valenzuela's personal website displaying different web development skills and various links to other pages on the site."
         />
       </Head>
-      <MyHeader textContent="HOME" />
+      {/* <MyHeader textContent="HOME" /> */}
       <main className={Styles.homepageContainer} id="homepage-container">
         {/* P A R A L L A X */}
         <div className={Styles.parallaxContainer}>
@@ -99,7 +99,7 @@ const Homepage = () => {
         </div>
         <div className={Styles.skillsbox} id="skillsbox">
           <div>
-            <Segment inverted style={{ textAlign: 'right', height: '100%' }}>
+            <Segment inverted style={{textAlign: 'right', height: '100%'}}>
               <p>Technical Skills and Experience</p>
             </Segment>
           </div>
@@ -134,7 +134,7 @@ const Homepage = () => {
               See more on my{' '}
               <Link href="/video">
                 <a
-                  style={{ textDecoration: 'underline' }}
+                  style={{textDecoration: 'underline'}}
                   className={Styles.navbarLinks}
                 >
                   video page
@@ -145,7 +145,7 @@ const Homepage = () => {
                 href="https://www.youtube.com/channel/UCVLkTnKT6LAdpFWKyHIfm5w"
                 rel="noopener noreferrer"
                 target="_blank"
-                style={{ textDecoration: 'underline' }}
+                style={{textDecoration: 'underline'}}
               >
                 YouTube channel
               </a>
@@ -187,6 +187,6 @@ const Homepage = () => {
       </main>
     </>
   );
-};
+}
 
 export default Homepage;
