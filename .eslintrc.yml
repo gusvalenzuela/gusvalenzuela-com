@@ -57,3 +57,4 @@ rules:
   react/jsx-props-no-spreading: off
   react/jsx-filename-extension: off
   react/prop-types: off
+  react/function-component-definition: off
