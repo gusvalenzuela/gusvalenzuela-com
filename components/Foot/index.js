@@ -5,7 +5,7 @@ import Styles from './Foot.module.css';
 function Foot() {
   return (
     <footer id="site-footer" className={Styles.footer}>
-      <div className={Styles.footerLeft}>2020 &copy; gr\^_^/</div>
+      <div className={Styles.footerLeft}>2020-2022 &copy; gr\^_^/</div>
       <div className={Styles.footerRight}>
         <div className={Styles.footerIcons}>
           <ul className={`${Styles.menu} ${Styles.simple}`}>
