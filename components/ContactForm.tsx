@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, Button, Label } from 'semantic-ui-react';
+import React, {useMemo, useState} from 'react';
+import {Form, Button, Label} from 'semantic-ui-react';
 import API from '../utils/API';
 
 const Style = () => (
@@ -44,23 +44,26 @@ const Style = () => (
 
 const ContactForm = () => {
   // document.title = `grv.Contact`;
-  const emailDefault = {
-    name: '',
-    email: '',
-    message: '',
-    success: false,
-    btnMsg: 'Send',
-    attempts: 0,
-    sending: false,
-  };
+  const emailDefault = useMemo(
+    () => ({
+      name: '',
+      email: '',
+      message: '',
+      success: false,
+      btnMsg: 'Send',
+      attempts: 0,
+      sending: false,
+    }),
+    [],
+  );
   const [emailData, setEmailData] = useState(emailDefault);
 
-  async function handleFormSubmission(event: { preventDefault: () => void }) {
+  const updateEmailData = async (event: {preventDefault: () => void}) => {
     event.preventDefault();
 
     // name & email is "required"
     if ((emailData.name?.trim() && emailData.email?.trim()) !== '') {
-      setEmailData({ ...emailData, btnMsg: 'Sending...', sending: true });
+      setEmailData({...emailData, btnMsg: 'Sending...', sending: true});
 
       API.sendContactEmail(emailData).then((res) => {
         if (res.status === 200) {
@@ -87,15 +90,20 @@ const ContactForm = () => {
     } else {
       // keep count of attempts at sending without populating required fields
       // used in displaying error border around field(s)
-      setEmailData({ ...emailData, attempts: emailData.attempts + 1 });
+      setEmailData({...emailData, attempts: emailData.attempts + 1});
 
       // clearing attempts after 5 secs (removing error border)
       setTimeout(() => {
-        setEmailData({ ...emailData, attempts: 0 });
+        setEmailData({...emailData, attempts: 0});
       }, 5000);
     }
     return () => {};
-  }
+  };
+
+  const handleFormSubmission = React.useCallback(updateEmailData, [
+    emailData,
+    emailDefault,
+  ]);
 
   return (
     <>
@@ -104,8 +112,8 @@ const ContactForm = () => {
         <h2>Send me an email:</h2>
         <Form.Field>
           <label htmlFor="#name">
-            Name <span style={{ color: '#ff0000ff', fontWeight: 600 }}>*</span>
-            <span style={{ float: 'right' }}>* Required Fields</span>
+            Name <span style={{color: '#ff0000ff', fontWeight: 600}}>*</span>
+            <span style={{float: 'right'}}>* Required Fields</span>
             <input
               className={`input ${
                 emailData.name === '' && emailData.attempts > 0
@@ -117,7 +125,7 @@ const ContactForm = () => {
               type="text"
               placeholder="Obi Wan Kenobi"
               onChange={(e) =>
-                setEmailData({ ...emailData, name: e.target.value })
+                setEmailData({...emailData, name: e.target.value})
               }
               value={emailData.name}
               required
@@ -137,7 +145,7 @@ const ContactForm = () => {
         </Form.Field>
         <Form.Field>
           <label htmlFor="#email">
-            Email <span style={{ color: '#ff0000ff', fontWeight: 600 }}>*</span>
+            Email <span style={{color: '#ff0000ff', fontWeight: 600}}>*</span>
             <input
               className={`input ${
                 emailData.email === '' && emailData.attempts > 0
@@ -149,7 +157,7 @@ const ContactForm = () => {
               type="email"
               placeholder="MasterOWB@jediorder.com"
               onChange={(e) =>
-                setEmailData({ ...emailData, email: e.target.value })
+                setEmailData({...emailData, email: e.target.value})
               }
               value={emailData.email}
               required
@@ -177,13 +185,13 @@ const ContactForm = () => {
               maxLength={4096}
               placeholder="Hello there!"
               onChange={(e) =>
-                setEmailData({ ...emailData, message: e.target.value })
+                setEmailData({...emailData, message: e.target.value})
               }
               value={emailData.message}
             />
           </label>
         </Form.Field>
-        <div style={{ display: 'flow-root' }}>
+        <div style={{display: 'flow-root'}}>
           <div
             style={{
               display: `${!emailData.success ? 'none' : ''}`,
@@ -201,7 +209,7 @@ const ContactForm = () => {
             secondary
             content={emailData.btnMsg}
             onClick={handleFormSubmission}
-            style={{ float: 'right', width: 'auto', padding: '1rem 2rem' }}
+            style={{float: 'right', width: 'auto', padding: '1rem 2rem'}}
             disabled={emailData.sending}
           />
         </div>
