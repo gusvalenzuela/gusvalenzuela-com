@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from 'react-sidebar';
-import Nav from '../Nav';
+import Nav from '../NavMenu';
 import SidebarToggle from '../SidebarToggle';
 import FixedBottomMenu from '../FixedBottomMenu';
 import Store from '../../stores/global';
